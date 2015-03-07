@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Region\R_Map.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Utility\SerializedPoint.cs" Line="70" Column="26" />
+      <File FileName="Assets\Scripts\Region\R_Camera.cs" Line="20" Column="30" />
+      <File FileName="Assets\Scripts\Region\R_Player.cs" Line="99" Column="50" />
+      <File FileName="Assets\Scripts\Region\R_Map.cs" Line="333" Column="34" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="D:\projects\games\Roguelike\Assets\Scripts\Region\R_Map.cs" line="342" />
+      <Breakpoint file="D:\projects\games\Roguelike\Assets\Scripts\Region\R_Map.cs" line="328" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
