@@ -125,7 +125,17 @@ public class SerializedPoint : IEquatable<SerializedPoint>
 	static public SerializedPoint operator  +(SerializedPoint point1,SerializedPoint point2)
 	{
 		return new SerializedPoint(point1.x + point2.x, point1.y + point2.y);
-	}//*
+	}//+
+
+	static public SerializedPoint operator  +(SerializedPoint point1,Vector2 point2)
+	{
+		return new SerializedPoint(point1.x + point2.x, point1.y + point2.y);
+	}//+
+
+	static public SerializedPoint operator  +(SerializedPoint point1,Vector3 point2)
+	{
+		return new SerializedPoint(point1.x + point2.x, point1.y + point2.y);
+	}//+
     
     //------------------------
     //TOSTRING

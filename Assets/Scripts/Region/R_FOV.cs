@@ -62,14 +62,4 @@ public class R_FOV : MonoBehaviour
 			return _self;
 		}//get
 	}//self
-
-	public class TilesMetadata
-	{
-		int FOVState = 0; //0 is unvisited, 1 is visible, 2 is visited but not visible
-		public TilesMetadata(int startingState)
-		{
-			FOVState = startingState;
-		}//constructor
-	}//TilesMetadata
-}
-//R_FOV
+}//R_FOV
