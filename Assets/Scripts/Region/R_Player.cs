@@ -104,6 +104,7 @@ public class R_Player : MonoBehaviour
     
     public void OnDestroy()
     {
+
     }//OnDestroy
     
     public bool canWalkInDir(int dir)

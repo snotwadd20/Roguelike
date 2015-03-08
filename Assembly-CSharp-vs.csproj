@@ -46,15 +46,22 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\ActLog.cs" />
      <Compile Include="Assets\Scripts\CameraShake.cs" />
+     <Compile Include="Assets\Scripts\Enemies\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemies\EnemyMove.cs" />
+     <Compile Include="Assets\Scripts\Enemies\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\LightFlicker.cs" />
+     <Compile Include="Assets\Scripts\Mover.cs" />
+     <Compile Include="Assets\Scripts\PlaySingleSound.cs" />
+     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Region\FOVSquare.cs" />
      <Compile Include="Assets\Scripts\Region\R_Camera.cs" />
      <Compile Include="Assets\Scripts\Region\R_FOV.cs" />
      <Compile Include="Assets\Scripts\Region\R_Map.cs" />
      <Compile Include="Assets\Scripts\Region\R_Player.cs" />
      <Compile Include="Assets\Scripts\Region\R_Reward.cs" />
+     <Compile Include="Assets\Scripts\Scaler.cs" />
      <Compile Include="Assets\Scripts\TextureScroller.cs" />
      <Compile Include="Assets\Scripts\UColor.cs" />
      <Compile Include="Assets\Scripts\Utility\Deck.cs" />
