@@ -700,6 +700,7 @@ public class R_Map : MonoBehaviour
             for(int x=0; x < width; x++)
             {
                 GameObject spt = null;
+				bool isCollidable = false;
 
                 switch(tiles[x,y])
                 {
@@ -718,6 +719,7 @@ public class R_Map : MonoBehaviour
 						{
 							t.color = Color.gray;
 		                    t.setupTile(mountains, corners[x,y]);
+							isCollidable = true;
 						}//else
                         break;
                     case NO_TILE:
@@ -734,6 +736,9 @@ public class R_Map : MonoBehaviour
                     spt.transform.position = transform.position + new Vector3(x,y,0);
                     spt.transform.parent = transform;
                     spt.name += " ["+x+","+y+"]";
+
+					if(isCollidable)
+						spt.AddComponent<BoxCollider2D>();
                 }//if
             }//for
         }//for

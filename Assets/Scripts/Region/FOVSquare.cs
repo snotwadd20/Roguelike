@@ -4,7 +4,7 @@ using System.Collections;
 public class FOVSquare : MonoBehaviour 
 {
 	public R_Player player = null;
-	public float seeDist = 4.5f;
+	public static float seeDist = 4.5f;
 
 	public float state = NEVER_SEEN;
 

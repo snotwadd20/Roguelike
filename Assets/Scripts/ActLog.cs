@@ -19,9 +19,8 @@ public class ActLog
 		}//get
 	}//self
 
-	// Use this for initialization
-	public ActLog () 
+	public static void print(string text)
 	{
-	}//constructor
-
+		Debug.Log(text);
+	}//print
 }//ActLogs
