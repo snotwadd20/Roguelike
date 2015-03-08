@@ -64,6 +64,7 @@ public class R_Player : MonoBehaviour
             }//else
         }//map
         
+		R_FOV.self.INIT(map, this);
 
         if(!GetComponent<Collider2D>())
             gameObject.AddComponent<CircleCollider2D>();

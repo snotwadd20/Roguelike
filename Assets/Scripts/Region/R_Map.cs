@@ -26,7 +26,7 @@ public class R_Map : MonoBehaviour
     //For flood fills
     public const int NOT_FLOODED = -1;
 
-    public static R_Map self = null;
+	public static R_Map self = null;
 
     //********************************
     //PUBLIC VARIABLES
@@ -61,14 +61,12 @@ public class R_Map : MonoBehaviour
     //********************************
     //Used for links[] sized arrays
     public int[,] links = null;
-    public int[,] floodVals = null;
-    public bool[,] isCovered = null;
-    public bool[,] hasDecorativeRock = null;
-    public bool[,] hasDungeon = null;
-
+	public int[,] floodVals = null;
     //Used for tiles[] sized arrays
     public int[,] tiles = null;
     public int[,] corners = null;
+
+
 
     public void initializeLists()
     {
@@ -81,24 +79,15 @@ public class R_Map : MonoBehaviour
         if(links == null)
             links = new int[linksWidth,linksHeight];
 
-        if(floodVals == null)
-            floodVals = new int[linksWidth,linksHeight];
-
-      
-        if(hasDungeon == null)
-            hasDungeon = new bool[linksWidth,linksHeight];
-        
-        if(hasDecorativeRock == null)
-            hasDecorativeRock = new bool[linksWidth,linksHeight];
+		if(floodVals == null)
+			floodVals = new int[linksWidth,linksHeight];
 
         for(int y=0; y < linksHeight; y++)
         {
             for(int x=0; x < linksWidth; x++)
             {
-                floodVals[x, y] = NOT_FLOODED;
                 links[x, y] = UNVISITED;
-                hasDecorativeRock[x,y] = true;
-                hasDungeon[x,y] = true;
+				floodVals[x,y] = NOT_FLOODED;
             }//for
         }//for
 
@@ -112,18 +101,14 @@ public class R_Map : MonoBehaviour
         if(corners == null)
             corners = new int[width,height];
 
-        if(isCovered == null)
-            isCovered = new bool[width, height];
-
         if(tiles == null)
             tiles = new int[width,height]; //Adds in spacers for "wall" tiles in maze
 
-        for(int y=0; y < height; y++)
+		for(int y=0; y < height; y++)
         {
             for(int x=0; x < width; x++)
             {
                 tiles[x, y] = NO_TILE;
-                isCovered[x,y] = false;
                 corners[x,y] = 0;
             }//for
         }//for

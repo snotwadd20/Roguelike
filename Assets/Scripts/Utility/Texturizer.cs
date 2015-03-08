@@ -313,19 +313,7 @@ public class Texturizer
     {
         texture.wrapMode = wrapMode;
 
-        Shader shader;
-        if(color.a < 1 || 
-                texture.GetPixel(0,0).a < 1 ||
-                texture.GetPixel(0,texture.height-1).a < 1 || 
-                texture.GetPixel(texture.width-1,texture.height-1).a < 1 ||
-                texture.GetPixel(texture.width-1,0).a < 1)
-        {
-            shader = Shader.Find("Transparent/Diffuse");
-        }
-        else
-        {
-            shader = Shader.Find("Diffuse");
-        }//else
+        Shader shader = Shader.Find("Transparent/Diffuse");
 
         GameObject quad = MakePlane(width, height, (int)width, (int)height, color, pivotOffset, false, theName, shader);
 

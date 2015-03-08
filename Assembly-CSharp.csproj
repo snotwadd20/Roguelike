@@ -46,7 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Region\FOVSquare.cs" />
      <Compile Include="Assets\Scripts\Region\R_Camera.cs" />
+     <Compile Include="Assets\Scripts\Region\R_FOV.cs" />
      <Compile Include="Assets\Scripts\Region\R_Map.cs" />
      <Compile Include="Assets\Scripts\Region\R_Player.cs" />
      <Compile Include="Assets\Scripts\Region\R_Reward.cs" />
@@ -61,25 +63,7 @@
      <Compile Include="Assets\Scripts\Utility\TimerCallback.cs" />
      <Compile Include="Assets\Scripts\Utility\UColor.cs" />
      <Compile Include="Assets\Scripts\WaterRipple.cs" />
-     <None Include="Assets\Resources\CSVs\Names\Safety\preamble.txt" />
-     <None Include="Assets\Resources\CSVs\Names\Conquest\preamble.txt" />
      <None Include="Assets\Resources\Effects\Shaders\Add_Alpha8.shader" />
-     <None Include="Assets\Resources\CSVs\things.txt" />
-     <None Include="Assets\Resources\CSVs\Names\Craft\preamble.txt" />
-     <None Include="Assets\Resources\CSVs\Names\Knowledge\preamble.txt" />
-     <None Include="Assets\Resources\CSVs\Names\Order\preamble.txt" />
-     <None Include="Assets\Resources\CSVs\Names\Safety\instructions.txt" />
-     <None Include="Assets\Resources\CSVs\Names\Safety\postamble.txt" />
-     <None Include="Assets\Resources\CSVs\Names\Knowledge\postamble.txt" />
-     <None Include="Assets\Resources\CSVs\Names\Conquest\postamble.txt" />
-     <None Include="Assets\Resources\CSVs\Names\Knowledge\instructions.txt" />
-     <None Include="Assets\Resources\CSVs\Names\Craft\instructions.txt" />
-     <None Include="Assets\Resources\SpriteBumpedDiffuse.shader" />
-     <None Include="Assets\Resources\CSVs\Names\Order\postamble.txt" />
-     <None Include="Assets\Resources\CSVs\general.txt" />
-     <None Include="Assets\Resources\CSVs\Names\Conquest\instructions.txt" />
-     <None Include="Assets\Resources\CSVs\Names\Craft\postamble.txt" />
-     <None Include="Assets\Resources\CSVs\Names\Order\instructions.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
