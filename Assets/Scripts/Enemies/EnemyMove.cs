@@ -38,7 +38,10 @@ public class EnemyMove : MonoBehaviour
 	//Thing that happens ever turn (deciding to move, attack, etc)
 	void OnTurn(int turnNumber)
 	{
-		chase();
+		if(turnNumber % 15 == 0)
+			wander();
+		else
+			chase();
 	}//OnTurn
 
 	private void chase() //Has a target
@@ -56,7 +59,6 @@ public class EnemyMove : MonoBehaviour
 		{
 			//If there are more than one, choose the one closest to "target"
 			float bestDist = float.MaxValue;
-			print (availableDirs);
 			SerializedPoint neighbor;
 
 			while(availableDirs > 0)

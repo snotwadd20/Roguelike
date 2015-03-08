@@ -136,6 +136,7 @@ public class R_Map : MonoBehaviour
 
         setUpTilesArray();
 
+		removeSmallWalls();
         //Output the region as tiles
         ToTiles();
 
@@ -154,7 +155,44 @@ public class R_Map : MonoBehaviour
     //********************************
     // MAZE GENERATION FUNCTIONS
     //********************************
-    //-------------------------------
+	//-------------------------------
+	//Removes any 1-unit walls from the tiles array
+	public void removeSmallWalls()
+	{
+		for(int y=0; y < height; y++)
+		{
+			for(int x=0; x < width; x++)
+			{
+				if(tiles[x,y] == WALL_TILE)
+				{
+					int connections = 0;
+
+					int dirs = UP | DOWN | LEFT | RIGHT;
+					SerializedPoint neighbor;
+
+					while(dirs > 0)
+					{
+						int dir = randomDirFromAvailable(ref dirs);
+						neighbor = findNeighbor(x,y, dir);
+						if(inTileBounds(neighbor))
+						{
+							if(tiles[x,y] == tiles[neighbor.ix, neighbor.iy])
+							{
+								connections = connections | dir;
+							}//if
+						}//if
+					}//while
+
+					if(connections == 0)
+					{
+						tiles[x,y] = GROUND_TILE;
+					}//if
+				}//if
+			}//for
+		}//for
+	}//removeSmallWalls
+
+	//-------------------------------
     //Autotiles the tiles[] array
     public void autoTileWalls()
     {
@@ -182,7 +220,7 @@ public class R_Map : MonoBehaviour
                 //Left
                 if(x-1 >= 0 && tiles[x-1,y] == tileType)
                     cornerNum += 8;
-                
+
                 corners[x,y] = cornerNum;
             }//for
         }//for
@@ -670,8 +708,17 @@ public class R_Map : MonoBehaviour
                         t.setupTile(ground, corners[x,y]);
                         break;
                     case WALL_TILE:
-                        t.color = Color.gray;
-                        t.setupTile(mountains, corners[x,y]);
+						if(corners[x,y] == 15) //Wall singles into rooms
+						{
+							tiles[x,y] = GROUND_TILE;
+							t.color = groundColor;
+							t.setupTile(ground, corners[x,y]);
+						}//if
+						else
+						{
+							t.color = Color.gray;
+		                    t.setupTile(mountains, corners[x,y]);
+						}//else
                         break;
                     case NO_TILE:
                     default:
