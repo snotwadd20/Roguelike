@@ -361,7 +361,7 @@ public class R_Map : MonoBehaviour
                 {
                     tiles[x,y] = WALL_TILE;
                 }//if
-                else
+				else
                 {
                     if( xx == wallIn-1 && yy == wallIn-1 && !pos.Equals(startPos) && !pos.Equals(endPos))
                     {
@@ -695,7 +695,7 @@ public class R_Map : MonoBehaviour
         t.setupFromTexture((Texture2D)Resources.Load("TileSets/Floors/gray"));
         t.color = groundColor;
         GameObject backdrop = t.makeObject(width, height, Vector3.zero, Vector2.one, TextureWrapMode.Repeat);
-        backdrop.transform.position = transform.position + Vector3.forward + new Vector3(width/2-0.5f, height/2);
+        backdrop.transform.position = transform.position + Vector3.forward + new Vector3(width/2, height/2);
         backdrop.transform.parent = transform;
     }//toTiles
 

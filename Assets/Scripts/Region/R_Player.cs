@@ -172,7 +172,8 @@ public class R_Player : MonoBehaviour
                 
                 if(canWalkInDir(dir))
                 {
-                    StartCoroutine(move(transform));
+					TurnManager.NextTurn();
+					StartCoroutine(move(transform));
                 }//if
                 else
                     Bump(dir);
