@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\Mover.cs" />
      <Compile Include="Assets\Scripts\PlaySingleSound.cs" />
      <Compile Include="Assets\Scripts\PlayerHealth.cs" />
+     <Compile Include="Assets\Scripts\PopupText.cs" />
      <Compile Include="Assets\Scripts\Region\FOVSquare.cs" />
      <Compile Include="Assets\Scripts\Region\R_Camera.cs" />
      <Compile Include="Assets\Scripts\Region\R_FOV.cs" />

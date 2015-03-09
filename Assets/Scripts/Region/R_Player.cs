@@ -35,7 +35,12 @@ public class R_Player : MonoBehaviour
     public static R_Player self;
     public bool autoWalkOn = true;
 
+
     public float playerLayer = 3;
+
+	private bool justMoved = false;
+	private int ignoreRaycastLayer = 0;
+
     public void Start()
     {
         if(self == null)
@@ -81,6 +86,10 @@ public class R_Player : MonoBehaviour
 		SerializedPoint spot = map.startPos;
         transform.position = spot;
 
+		justMoved = false;
+
+		ignoreRaycastLayer = LayerMask.NameToLayer("Ignore Raycast");
+
     }//Awake
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -117,23 +126,12 @@ public class R_Player : MonoBehaviour
             return false;
 		if(R_Map.self.tiles[neighbor.ix, neighbor.iy] == R_Map.WALL_TILE)
 			return false;
-        //Do a ray cast in the direction to see if you hit a piece of clutter
-
-        int oldLayer = gameObject.layer;
-        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        Vector2 rayPos = ptInDir(0,0,dir).normalized;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayPos, 1);
-        Debug.DrawRay(transform.position,rayPos, Color.red, 0.1f);
-        gameObject.layer = oldLayer;
-
-        if(hit) //Collide
-        {
-            return false;
-        }//if
-
+        
         return true;
     }//canWalkInDir
     
+
+
     public void Update() 
     {
         if(isUsingGodFinger)
@@ -142,6 +140,12 @@ public class R_Player : MonoBehaviour
         if(map == null)
             return;
         
+		if(justMoved && !isMoving) //Did you just finish moving?
+		{
+			justMoved = false;
+			TurnManager.NextTurn();
+		}//if
+
         if (!isMoving) 
         {
 
@@ -173,8 +177,25 @@ public class R_Player : MonoBehaviour
                 
                 if(canWalkInDir(dir))
                 {
-					TurnManager.NextTurn();
-					StartCoroutine(move(transform));
+					justMoved = true;
+
+					//If going in that direction would hit an enemy, do an attack instead
+					Vector3 rayPos = transform.position + (Vector3)ptInDir(0,0,dir).normalized;
+					RaycastHit2D hit = raycastTo(rayPos - transform.position,1,"Enemies");
+					
+					if(hit) //Collide
+					{
+						EnemyHealth eh = hit.collider.gameObject.GetComponent<EnemyHealth>();
+						if(eh != null)
+						{
+							ActLog.print("Player did 10 damage to enemy");
+							eh.dealDamage(10);
+						}//if
+					}//if
+					else
+					{
+						StartCoroutine(move(transform));
+					}//else
                 }//if
                 else
                     Bump(dir);
@@ -284,4 +305,39 @@ public class R_Player : MonoBehaviour
         isMoving = false;
         yield return 0;
     }//move
+
+	//This is the slower version (since it has to mess with strings)
+	private RaycastHit2D raycastTo(Vector3 direction, float length, params string[] layerNames)
+	{
+		int layerFlags = 0;//1 << LayerMask.NameToLayer("Player");
+		if(layerNames.Length == 0)
+			layerFlags = 1 << LayerMask.NameToLayer("Default");
+		else
+		{
+			foreach(string lName in layerNames)
+			{
+				layerFlags  |= 1 << LayerMask.NameToLayer(lName);
+			}//foreach
+		}//else
+		
+		
+		return raycastTo(direction, length, layerFlags);
+	}//ray
+	
+	//Faster  version
+	private RaycastHit2D raycastTo(Vector3 direction, float length, int layerFlags)
+	{
+		int oldLayer = gameObject.layer;
+		gameObject.layer = ignoreRaycastLayer;
+		
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, length, layerFlags);
+		
+		if(hit.collider != null)
+			Debug.DrawRay(transform.position, direction.normalized*length, Color.red, 2.0f);
+		else
+			Debug.DrawRay(transform.position, direction.normalized*length, Color.white, 2.0f);
+		
+		gameObject.layer = oldLayer;
+		return hit;
+	}//ray
 }//GridMove
