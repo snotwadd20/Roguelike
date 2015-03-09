@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class Container : MonoBehaviour 
 {
-	private Dictionary<string, Pickable> contents = null;
+	public Dictionary<string, Pickable> contents = null;
 	public new string name = "Container";
 	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{
 		if(contents == null)
 			contents = new Dictionary<string,Pickable>();
@@ -18,6 +18,11 @@ public class Container : MonoBehaviour
 	{
 	
 	}
+
+	public void showUI()
+	{
+		ContainerUI.Create(this);
+	}//showUI
 
 	public void Add(Pickable item)
 	{

@@ -10,7 +10,8 @@ public class RoguelikeControls : MonoBehaviour
 		switch(key)
 		{
 			case "i":
-			print ("inventory");
+				Container inventory = gameObject.GetComponent<Container>();
+				inventory.showUI();
 			break;
 		}//switch
 	}//executeControl
@@ -18,6 +19,9 @@ public class RoguelikeControls : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		if(Time.timeScale == 0)
+			return;
+
 		foreach(char letter in alphabet)
 		{
 			if(Input.GetKeyDown(letter+""))

@@ -67,11 +67,13 @@
      <Compile Include="Assets\Scripts\Region\R_Player.cs" />
      <Compile Include="Assets\Scripts\Region\R_Reward.cs" />
      <Compile Include="Assets\Scripts\RoguelikeControls.cs" />
+     <Compile Include="Assets\Scripts\UI\ContainerUI.cs" />
      <Compile Include="Assets\Scripts\UI\FadeScrollTextUI.cs" />
+     <Compile Include="Assets\Scripts\UI\ItemButtonUI.cs" />
      <Compile Include="Assets\Scripts\UI\LogUI.cs" />
      <Compile Include="Assets\Scripts\UI\PopupText.cs" />
+     <Compile Include="Assets\Scripts\UI\UIWindowBase.cs" />
      <Compile Include="Assets\Scripts\UI\UpdateLivesUI.cs" />
-     <Compile Include="Assets\Scripts\UIWindowBase.cs" />
      <Compile Include="Assets\Scripts\Utility\Deck.cs" />
      <Compile Include="Assets\Scripts\Utility\HiveMind.cs" />
      <Compile Include="Assets\Scripts\Utility\RandomSeed.cs" />

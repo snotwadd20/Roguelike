@@ -21,7 +21,7 @@ public class LogUI : MonoBehaviour
 	{
 		Text txt = GameObject.Instantiate(self.prefab).GetComponent<Text>();
 		txt.text = message;
-		txt.transform.SetParent(self.contentPanel);
+		txt.transform.SetParent(self.contentPanel, true);
 		txt.gameObject.SetActive(true);
 		txt.gameObject.AddComponent<FadeScrollTextUI>();
 		self.scrollBar.value = 0;
