@@ -47,27 +47,28 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\ActLog.cs" />
-     <Compile Include="Assets\Scripts\CameraShake.cs" />
+     <Compile Include="Assets\Scripts\Container.cs" />
+     <Compile Include="Assets\Scripts\Effects\CameraShake.cs" />
+     <Compile Include="Assets\Scripts\Effects\LightFlicker.cs" />
+     <Compile Include="Assets\Scripts\Effects\TextureScroller.cs" />
+     <Compile Include="Assets\Scripts\Effects\UColor.cs" />
+     <Compile Include="Assets\Scripts\Effects\WaterRipple.cs" />
      <Compile Include="Assets\Scripts\Enemies\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemies\EnemyMove.cs" />
      <Compile Include="Assets\Scripts\Enemies\EnemySpawner.cs" />
-     <Compile Include="Assets\Scripts\FadeScrollTextUI.cs" />
-     <Compile Include="Assets\Scripts\LightFlicker.cs" />
-     <Compile Include="Assets\Scripts\LogUI.cs" />
-     <Compile Include="Assets\Scripts\Mover.cs" />
+     <Compile Include="Assets\Scripts\Pickable.cs" />
      <Compile Include="Assets\Scripts\PlaySingleSound.cs" />
      <Compile Include="Assets\Scripts\PlayerHealth.cs" />
-     <Compile Include="Assets\Scripts\PopupText.cs" />
      <Compile Include="Assets\Scripts\Region\FOVSquare.cs" />
      <Compile Include="Assets\Scripts\Region\R_Camera.cs" />
      <Compile Include="Assets\Scripts\Region\R_FOV.cs" />
      <Compile Include="Assets\Scripts\Region\R_Map.cs" />
      <Compile Include="Assets\Scripts\Region\R_Player.cs" />
      <Compile Include="Assets\Scripts\Region\R_Reward.cs" />
-     <Compile Include="Assets\Scripts\Scaler.cs" />
-     <Compile Include="Assets\Scripts\TextureScroller.cs" />
-     <Compile Include="Assets\Scripts\UColor.cs" />
-     <Compile Include="Assets\Scripts\UpdateLivesUI.cs" />
+     <Compile Include="Assets\Scripts\UI\FadeScrollTextUI.cs" />
+     <Compile Include="Assets\Scripts\UI\LogUI.cs" />
+     <Compile Include="Assets\Scripts\UI\PopupText.cs" />
+     <Compile Include="Assets\Scripts\UI\UpdateLivesUI.cs" />
      <Compile Include="Assets\Scripts\Utility\Deck.cs" />
      <Compile Include="Assets\Scripts\Utility\HiveMind.cs" />
      <Compile Include="Assets\Scripts\Utility\RandomSeed.cs" />
@@ -75,7 +76,6 @@
      <Compile Include="Assets\Scripts\Utility\Texturizer.cs" />
      <Compile Include="Assets\Scripts\Utility\TimerCallback.cs" />
      <Compile Include="Assets\Scripts\Utility\TurnManager.cs" />
-     <Compile Include="Assets\Scripts\WaterRipple.cs" />
      <None Include="Assets\Resources\Effects\Shaders\Add_Alpha8.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

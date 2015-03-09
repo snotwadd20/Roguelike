@@ -17,11 +17,6 @@ public class EnemyHealth : MonoBehaviour
     private Color startingSpriteColor;
 
     public Color damageColor = Color.red;
-    // Use this for initialization
-
-    public EnemySpawner spawner = null;
-
-    //private GameObject player = null;
 
     public bool neverKilled = true;
 
@@ -61,18 +56,6 @@ public class EnemyHealth : MonoBehaviour
         }//if
 
         hitbox.isTrigger = false;
-
-        if(gameObject.transform.parent != null)
-        {
-            spawner = gameObject.GetComponentInParent<EnemySpawner>();
-        }//if
-
-        /*if(dpot == null)
-        {
-            dpot = gameObject.GetComponent<DamagePlayerOnTouch>();
-            if(dpot)
-                dpot.enabled = true;
-        }//if*/
 
     }//OnEnable
 
@@ -148,28 +131,8 @@ public class EnemyHealth : MonoBehaviour
             c.isTrigger = true;
         }//foreach
 
-        if(spawner!= null)
-        {
-            /*if(dpot)
-                dpot.enabled = false;*/
-            Invoke("deSpawn", 1.0f);
-            //spawner.deSpawn();
-        }//if
-        else
-        {
-            Destroy(this.gameObject, 1.0f); //Destroy the enemy after 2 seconds
-        }//else
-
-        //PlaySingleSound.Spawn(deathSound, 0, 0.5f);
-
-        //MoneyPinata.Place(null, transform.position, 2, 2, true);
+        Destroy(this.gameObject, 1.0f); //Destroy the enemy after 2 seconds
     }//die
-
-    private void deSpawn()
-    {
-
-        //spawner.deSpawn();
-    }//deSpawn
 
     private void flicker(bool doFlicker = true, int interval = 10)
     {

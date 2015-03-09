@@ -27,6 +27,7 @@ public class FadeScrollTextUI : MonoBehaviour
 
 		if(color.a == 0)
 		{
+			Canvas.ForceUpdateCanvases();
 			Destroy(gameObject);
 			Canvas.ForceUpdateCanvases();
 		}//if
