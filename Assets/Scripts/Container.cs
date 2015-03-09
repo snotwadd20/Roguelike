@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class Container : MonoBehaviour 
 {
-	Dictionary<string, Pickable> contents = null;
-
+	private Dictionary<string, Pickable> contents = null;
+	public new string name = "Container";
 	// Use this for initialization
 	void Start () 
 	{
@@ -29,4 +29,6 @@ public class Container : MonoBehaviour
 		}//else
 		item.gameObject.SetActive(false);
 	}//Add
+
+
 }//Container

@@ -20,12 +20,12 @@ public class Pickable : MonoBehaviour
 	
 	public void OnTriggerEnter2D()
 	{
-		print ("press P to pick up");
+		ActLog.print("press P to pick up");
 	}//OnTriggerEnter2D
 
 	public void pick(ref Container container)
 	{
-		print ("You picked up the " + name + ".");
+		ActLog.print ("You picked up the " + name + ".");
 		container.Add(this);
 	}//pick
 

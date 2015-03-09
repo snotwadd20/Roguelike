@@ -71,6 +71,7 @@
      <Compile Include="Assets\Scripts\UI\LogUI.cs" />
      <Compile Include="Assets\Scripts\UI\PopupText.cs" />
      <Compile Include="Assets\Scripts\UI\UpdateLivesUI.cs" />
+     <Compile Include="Assets\Scripts\UIWindowBase.cs" />
      <Compile Include="Assets\Scripts\Utility\Deck.cs" />
      <Compile Include="Assets\Scripts\Utility\HiveMind.cs" />
      <Compile Include="Assets\Scripts\Utility\RandomSeed.cs" />
