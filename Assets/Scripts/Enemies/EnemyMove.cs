@@ -43,7 +43,7 @@ public class EnemyMove : MonoBehaviour
 
 		wasOffScreen = true;
 		state = WANDER;
-		turnsChasingBlind = 0;
+		//turnsChasingBlind = 0;
 		ignoreRaycastLayer = LayerMask.NameToLayer("Ignore Raycast");
 	}//Start
 
