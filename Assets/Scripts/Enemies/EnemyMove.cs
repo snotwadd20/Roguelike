@@ -47,12 +47,6 @@ public class EnemyMove : MonoBehaviour
 		ignoreRaycastLayer = LayerMask.NameToLayer("Ignore Raycast");
 	}//Start
 
-	void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.Space))
-			PopupText.Create("ABBADABA", R_Player.self.transform.position + Vector3.forward * -2, Color.red);
-	}//Update
-	
 	// Update is called once per frame
 	void LateUpdate () 
 	{

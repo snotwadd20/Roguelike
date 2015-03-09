@@ -21,6 +21,9 @@ public class ActLog
 
 	public static void print(string text)
 	{
-		Debug.Log(text);
+		//Debug.Log(text);
+		if(LogUI.self)
+			LogUI.AddMessage(text);
+		
 	}//print
 }//ActLogs

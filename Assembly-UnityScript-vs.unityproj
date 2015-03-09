@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{3B4D7A7B-B193-C7B8-731F-3F701A73DF6D}</ProjectGuid>
+	<ProjectGuid>{01E23165-4541-C703-2C52-256DBAFE02DB}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<AssemblyName>Assembly-UnityScript</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -46,37 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\ActLog.cs" />
-     <Compile Include="Assets\Scripts\CameraShake.cs" />
-     <Compile Include="Assets\Scripts\Enemies\EnemyHealth.cs" />
-     <Compile Include="Assets\Scripts\Enemies\EnemyMove.cs" />
-     <Compile Include="Assets\Scripts\Enemies\EnemySpawner.cs" />
-     <Compile Include="Assets\Scripts\FadeScrollTextUI.cs" />
-     <Compile Include="Assets\Scripts\LightFlicker.cs" />
-     <Compile Include="Assets\Scripts\LogUI.cs" />
-     <Compile Include="Assets\Scripts\Mover.cs" />
-     <Compile Include="Assets\Scripts\PlaySingleSound.cs" />
-     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
-     <Compile Include="Assets\Scripts\PopupText.cs" />
-     <Compile Include="Assets\Scripts\Region\FOVSquare.cs" />
-     <Compile Include="Assets\Scripts\Region\R_Camera.cs" />
-     <Compile Include="Assets\Scripts\Region\R_FOV.cs" />
-     <Compile Include="Assets\Scripts\Region\R_Map.cs" />
-     <Compile Include="Assets\Scripts\Region\R_Player.cs" />
-     <Compile Include="Assets\Scripts\Region\R_Reward.cs" />
-     <Compile Include="Assets\Scripts\Scaler.cs" />
-     <Compile Include="Assets\Scripts\TextureScroller.cs" />
-     <Compile Include="Assets\Scripts\UColor.cs" />
-     <Compile Include="Assets\Scripts\UpdateLivesUI.cs" />
-     <Compile Include="Assets\Scripts\Utility\Deck.cs" />
-     <Compile Include="Assets\Scripts\Utility\HiveMind.cs" />
-     <Compile Include="Assets\Scripts\Utility\RandomSeed.cs" />
-     <Compile Include="Assets\Scripts\Utility\SerializedPoint.cs" />
-     <Compile Include="Assets\Scripts\Utility\Texturizer.cs" />
-     <Compile Include="Assets\Scripts\Utility\TimerCallback.cs" />
-     <Compile Include="Assets\Scripts\Utility\TurnManager.cs" />
-     <Compile Include="Assets\Scripts\WaterRipple.cs" />
+     <Compile Include="Assets\SimChat\testSingleChat.js" />
      <None Include="Assets\Resources\Effects\Shaders\Add_Alpha8.shader" />
+     <None Include="Assets\SimChat\readme.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
