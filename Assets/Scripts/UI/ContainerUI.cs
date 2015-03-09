@@ -10,10 +10,15 @@ public class ContainerUI : MonoBehaviour
 	public Transform contentPanel = null;
 	public Container container = null;
 	public ScrollRect scrollRect = null;
+
 	private static GameObject prefab = null;
+	private static Transform mainCanvas = null;
 
 	void Start () 
 	{
+		if(mainCanvas == null)
+			mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
+
 		headerText.text = container.name;
 
 		foreach(KeyValuePair<string, Pickable> item in container.contents)
@@ -36,14 +41,17 @@ public class ContainerUI : MonoBehaviour
 			itemButton.gameObject.SetActive(true);
 			itemButton.transform.SetParent(contentPanel);
 			itemButton.transform.localScale = Vector3.one;
-			Canvas.ForceUpdateCanvases();
-			scrollRect.verticalNormalizedPosition = 0;
-			Canvas.ForceUpdateCanvases();
+
 
 		}//foreach
+		Canvas.ForceUpdateCanvases();
+		scrollRect.verticalNormalizedPosition = 0;
+		Canvas.ForceUpdateCanvases();
 		//Canvas.ForceUpdateCanvases();
 
 		Time.timeScale = 0;
+
+		transform.SetParent(mainCanvas, true);
 	}//OnEnable
 
 	void Update()
