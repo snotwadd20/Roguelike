@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour 
 {
     public float max_Health = 100;
-    private float currentHealth;
+    public float currentHealth;
     
     private bool isDead = false;
     private bool takingDamage = false;

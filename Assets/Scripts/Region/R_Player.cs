@@ -39,6 +39,7 @@ public class R_Player : MonoBehaviour
     public float playerLayer = 3;
 
 	private bool justMoved = false;
+	private bool justAttacked = false;
 	private int ignoreRaycastLayer = 0;
 
     public void Start()
@@ -130,7 +131,10 @@ public class R_Player : MonoBehaviour
         return true;
     }//canWalkInDir
     
-
+	private void clearAttackFlag()
+	{
+		justAttacked = false;
+	}
 
     public void Update() 
     {
@@ -146,9 +150,8 @@ public class R_Player : MonoBehaviour
 			TurnManager.NextTurn();
 		}//if
 
-        if (!isMoving) 
+        if (!justAttacked && !isMoving) 
         {
-
             currentMapPos = new SerializedPoint(transform.position.x, transform.position.y);
 
             input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -177,8 +180,9 @@ public class R_Player : MonoBehaviour
                 
                 if(canWalkInDir(dir))
                 {
-					justMoved = true;
+					justAttacked = true;
 
+					TimerCallback.createTimer(0.3f, clearAttackFlag, "Stop Moving timer", false);
 					//If going in that direction would hit an enemy, do an attack instead
 					Vector3 rayPos = transform.position + (Vector3)ptInDir(0,0,dir).normalized;
 					RaycastHit2D hit = raycastTo(rayPos - transform.position,1,"Enemies");
@@ -190,10 +194,13 @@ public class R_Player : MonoBehaviour
 						{
 							ActLog.print("Player did 10 damage to enemy");
 							eh.dealDamage(10);
+							CameraShake.Shake(Camera.main, 0.25f, 0.4f, 1.0f, Vector2.zero) ;
 						}//if
+						TurnManager.NextTurn();
 					}//if
 					else
 					{
+						justMoved = true;
 						StartCoroutine(move(transform));
 					}//else
                 }//if
@@ -203,6 +210,7 @@ public class R_Player : MonoBehaviour
             }//if
         }//if
     }//Update
+
 
     //Find a "neighbor" cell in a direction and return coordinates
     public Vector2 ptInDir(Vector2 loc, int dir)

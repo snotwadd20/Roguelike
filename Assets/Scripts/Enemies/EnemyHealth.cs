@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyHealth : MonoBehaviour 
 {
     public float startingHealth = 100;
-    private float currentHealth;
+    public float currentHealth;
 
     private bool isDead = false;
     private bool takingDamage = false;
