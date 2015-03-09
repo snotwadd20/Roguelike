@@ -27,8 +27,8 @@ public class EnemyMove : MonoBehaviour
 	private int lastMoveDir = 0;
 
 	//Consecutive turns before we go back to wander
-	private int turnsChasingBlind = 0;
-	private int maxBlindChaseTurns = 4; 
+	//private int turnsChasingBlind = 0;
+	//private int maxBlindChaseTurns = 4; 
 
 	private int ignoreRaycastLayer = 0;
 

@@ -72,6 +72,7 @@ public class PlayerHealth : MonoBehaviour
             return;
 
         currentHealth -= damage;
+		PopupText.Create("-" + damage +  " HP" , transform.position + Vector3.up * 0.75f, Color.red);
 
         knockBack((Vector2)transform.position - damageLocation, 2000);
         doHitColor();
@@ -98,22 +99,9 @@ public class PlayerHealth : MonoBehaviour
     public void useExtraLife()
     {
         //Spawn a "1up" message over player
-        //FloatingTextGUI.SpawnScroller("-1 Life!", transform.position + Vector3.forward * -3 + Vector3.up * GetComponent<Collider2D>().bounds.size.y/3, Color.red);
-        
-        //pause game, play sound,display message
-        /*ModalStinger rwd = gameObject.GetComponent<ModalStinger>();
-        if(rwd == null)
-        {
-            rwd = gameObject.AddComponent<ModalStinger>();
-            rwd.message = "You  died!";
-            rwd.musicStinger = Resources.Load<AudioClip>("Audio/Stinger");
-            rwd.volume = 0.1f;
-            rwd.pitch = 0.2f;
-            //rwd.pauseTime = 2.0f;
-        }//if
+		PopupText.Create("-1 Life!" , transform.position + Vector3.forward * -3 + Vector3.up * GetComponent<Collider2D>().bounds.size.y/3, Color.black);
 
-        rwd.doStinger();
-        TimerCallback.createTimer(rwd.pauseTime, refillAllHealth, "Refill health timer", true);*/
+		TimerCallback.createTimer(0.1f, refillAllHealth, "Refill health timer", true);
     }//useExtraLife
 
     public void addToMaxHealth(float extraHealth)
@@ -166,6 +154,7 @@ public class PlayerHealth : MonoBehaviour
         {
             c.isTrigger = true;
         }//foreach
+		PopupText.Create("!!DIED!!!" , transform.position + Vector3.up * 0.75f, Color.black);
 
         Invoke("removePlayer",1.0f);
         //Destroy(this.gameObject, 1.0f); //Destroy the enemy after 2 seconds

@@ -97,6 +97,7 @@ public class EnemyHealth : MonoBehaviour
 
         currentHealth -= damage;
         doHitColor();
+		PopupText.Create("-" + damage +  " HP" , transform.position + Vector3.up * 0.75f, Color.blue);
 
         if(currentHealth <= 0)
         {
@@ -151,7 +152,6 @@ public class EnemyHealth : MonoBehaviour
         {
             /*if(dpot)
                 dpot.enabled = false;*/
-
             Invoke("deSpawn", 1.0f);
             //spawner.deSpawn();
         }//if
