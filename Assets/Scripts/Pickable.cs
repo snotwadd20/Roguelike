@@ -4,22 +4,35 @@ using System.Collections;
 public class Pickable : MonoBehaviour 
 {
 	//Metadata
-	public string name = "Item";
+	public new string name = "Item";
 	public string type = "Nada";
 	public int count = 1;
 
-	InventoryClickCallback callback = null;
+	public InventoryClickCallback callback = null;
+
 	// Use this for initialization
 	void Start () 
 	{
+		CircleCollider2D cc2d = gameObject.AddComponent<CircleCollider2D>();
+		cc2d.isTrigger = true;
+		cc2d.radius *= 1.25f;
+	}//Start
 	
-	}
-	
-	// Update is called once per frame
-	void Update () 
+	public void OnTriggerEnter2D()
 	{
-	
-	}
+		print ("press P to pick up");
+	}//OnTriggerEnter2D
+
+	public void pick(ref Container container)
+	{
+		print ("You picked up the " + name + ".");
+		container.Add(this);
+	}//pick
+
+	public void use()
+	{
+		callback();
+	}//use
 
 	public void RegisterCallback(InventoryClickCallback callback)
 	{

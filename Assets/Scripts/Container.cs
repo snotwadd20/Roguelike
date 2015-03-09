@@ -9,8 +9,8 @@ public class Container : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		if(contents = null)
-			contents = new List<string,Pickable>();
+		if(contents == null)
+			contents = new Dictionary<string,Pickable>();
 	}//Start
 	
 	// Update is called once per frame
@@ -25,7 +25,7 @@ public class Container : MonoBehaviour
 			contents.Add(item.type, item);
 		else
 		{
-			contents[item.type].count++;
+			contents[item.type].count+= item.count;
 		}//else
 		item.gameObject.SetActive(false);
 	}//Add
