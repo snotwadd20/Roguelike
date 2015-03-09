@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\Scaler.cs" />
      <Compile Include="Assets\Scripts\TextureScroller.cs" />
      <Compile Include="Assets\Scripts\UColor.cs" />
+     <Compile Include="Assets\Scripts\UpdateLivesUI.cs" />
      <Compile Include="Assets\Scripts\Utility\Deck.cs" />
      <Compile Include="Assets\Scripts\Utility\HiveMind.cs" />
      <Compile Include="Assets\Scripts\Utility\RandomSeed.cs" />

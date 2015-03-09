@@ -209,7 +209,7 @@ public class PlayerHealth : MonoBehaviour
 
         if(healthBar)
         {
-            healthBar.value = currentHealth;
+            healthBar.value = currentHealth / maxHealth;
         }//if
 
         if(hpText)
