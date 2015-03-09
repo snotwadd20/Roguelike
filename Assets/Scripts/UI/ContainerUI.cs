@@ -18,8 +18,19 @@ public class ContainerUI : MonoBehaviour
 
 		foreach(KeyValuePair<string, Pickable> item in container.contents)
 		{
+
 			// do something with entry.Value or entry.Key
 			ItemButtonUI itemButton = ((GameObject)Instantiate(buttonPrefab.gameObject)).GetComponent<ItemButtonUI>();
+
+			SpriteRenderer sr = item.Value.gameObject.GetComponent<SpriteRenderer>();
+
+			if(sr != null)
+			{
+				Sprite sprite = sr.sprite;
+				itemButton.image.sprite = sprite;
+				itemButton.image.color = sr.color;
+			}//if
+
 			itemButton.textObj.text = item.Value.name;
 			itemButton.itemCount.text = item.Value.count + "";
 			itemButton.gameObject.SetActive(true);
