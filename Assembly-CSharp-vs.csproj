@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\ActLog.cs" />
      <Compile Include="Assets\Scripts\Container.cs" />
      <Compile Include="Assets\Scripts\Effects\CameraShake.cs" />
+     <Compile Include="Assets\Scripts\Effects\DestroyAfterTime.cs" />
      <Compile Include="Assets\Scripts\Effects\LightFlicker.cs" />
      <Compile Include="Assets\Scripts\Effects\TextureScroller.cs" />
      <Compile Include="Assets\Scripts\Effects\UColor.cs" />

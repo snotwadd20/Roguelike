@@ -10,7 +10,7 @@ public class Missile : MonoBehaviour
 
 	public ExplodeCallback onExplode = null;
 
-	private GameObject caster = null;
+	public GameObject caster = null;
 	public LayerMask mask = 0;
 	void Start () 
 	{
@@ -55,8 +55,6 @@ public class Missile : MonoBehaviour
 
 		if(caster == R_Player.self.gameObject)
 			TurnManager.NextTurn();
-
-		CameraShake.Shake(Camera.main, 0.1f, 0.15f, 1.73f, Vector2.zero);
 
 		Destroy(gameObject);
 	}//Explode

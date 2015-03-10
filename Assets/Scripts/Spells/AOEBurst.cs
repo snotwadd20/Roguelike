@@ -5,7 +5,7 @@ public class AOEBurst : MonoBehaviour
 {
 	private GameObject caster = null;
 
-	public float radius = 5.0f;
+	private float radius = 10.0f;
 	public LayerMask mask = 0;
 
 	public ExplodeCallback onExplode = null;
@@ -20,7 +20,7 @@ public class AOEBurst : MonoBehaviour
 
 	void Update()
 	{
-		if(isInitialized)
+		if(!isInitialized)
 		{
 			gameObject.layer = LayerMask.NameToLayer("Projectiles");
 			
@@ -34,18 +34,21 @@ public class AOEBurst : MonoBehaviour
 			mask = ~mask;
 			
 			Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius, mask);
-			Debug.DrawRay(transform.position, Vector3.up);
-			Debug.DrawRay(transform.position, Vector3.up*-1);
-			Debug.DrawRay(transform.position, Vector3.right*-1);
-			Debug.DrawRay(transform.position, Vector3.right);
+			Debug.DrawRay(transform.position, Vector3.up * radius, Color.red, 10);
+			Debug.DrawRay(transform.position, Vector3.up*-1 * radius, Color.red, 10);
+			Debug.DrawRay(transform.position, Vector3.right*-1 * radius, Color.red, 10);
+			Debug.DrawRay(transform.position, Vector3.right * radius, Color.red, 10);
 
 			if((hits != null && hits.Length > 0))
 			{
 				explode (hits);
 			}//if
-
 			isInitialized = true;
 		}//isInitialized
+		else
+		{
+			Destroy(gameObject);
+		}//else
 
 	}//Update
 	
@@ -68,7 +71,7 @@ public class AOEBurst : MonoBehaviour
 		
 		target.z = caster.position.z;
 		
-		burst.transform.position = caster.position;
+		burst.transform.position = target;
 		burst.radius = radius;
 		burst.onExplode = onExplode;
 		burst.caster = caster.gameObject;

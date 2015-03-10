@@ -2,17 +2,16 @@
 using System.Collections;
 
 public delegate void SpellCallback(Collider2D[] colls, Vector3 mousePos, Transform caster);
+public enum SpellType {MagicMissile, Fireball};
 
 public class SpellScroll : MonoBehaviour 
 {
 	public new string name = "Healing item";
 	public Pickable pickableScript = null;
 
-
-	public float damageAmount = 100;
-	public const string TYPE = "spellScroll";
-
 	public SpellCallback spellCastFunction = null;
+
+	public SpellType spellType = SpellType.MagicMissile;
 
 	public int count  = 1;
 	// Use this for initialization
@@ -25,12 +24,17 @@ public class SpellScroll : MonoBehaviour
 			pickableScript = gameObject.AddComponent<Pickable>();
 		
 		pickableScript.name = name;
-		pickableScript.type = TYPE;
+		pickableScript.type = spellType + "";
 		pickableScript.count = count;
 		pickableScript.callback = castSpell;
 
 		if(spellCastFunction == null)
-			spellCastFunction = Spells.MagicMissile;
+		{
+			if(spellType == SpellType.MagicMissile)
+				spellCastFunction = Spells.MagicMissile;
+			else if(spellType == SpellType.Fireball)
+				spellCastFunction = Spells.Fireball;
+		}//if
 	}//Start
 	
 	public void castSpell(Pickable pickable)
@@ -43,6 +47,8 @@ public class SpellScroll : MonoBehaviour
 		Targeter.self.callback = spellCastFunction;
 		holder.Remove(pickable.type);
 	}//castSpell
+
+
 
 }//SpellScroll
 
