@@ -10,6 +10,8 @@ public class Pickable : MonoBehaviour
 
 	public InventoryClickCallback callback = null;
 
+	public Container holdingContainer = null;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -27,11 +29,12 @@ public class Pickable : MonoBehaviour
 	{
 		ActLog.print ("You picked up the " + name + ".");
 		container.Add(this);
+		holdingContainer = container;
 	}//pick
 
 	public void use()
 	{
-		callback();
+		callback(this);
 	}//use
 
 	public void RegisterCallback(InventoryClickCallback callback)
@@ -39,5 +42,5 @@ public class Pickable : MonoBehaviour
 		this.callback = callback;
 	}//
 
-	public delegate void InventoryClickCallback();
+	public delegate void InventoryClickCallback(Pickable pickable);
 }//Pickable

@@ -36,12 +36,14 @@ public class ContainerUI : MonoBehaviour
 				itemButton.image.color = sr.color;
 			}//if
 
-			itemButton.textObj.text = item.Value.name;
-			itemButton.itemCount.text = item.Value.count + "";
+			itemButton.item = item.Value;
+
 			itemButton.gameObject.SetActive(true);
 			itemButton.transform.SetParent(contentPanel);
+
 			itemButton.transform.localScale = Vector3.one;
 
+			itemButton.button.onClick.AddListener(() => {use(item.Value);} );
 
 		}//foreach
 		Canvas.ForceUpdateCanvases();
@@ -53,6 +55,11 @@ public class ContainerUI : MonoBehaviour
 
 		transform.SetParent(mainCanvas, true);
 	}//OnEnable
+
+	public void use(Pickable pickable)
+	{
+		pickable.use();
+	}//use
 
 	void Update()
 	{

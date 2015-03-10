@@ -65,6 +65,11 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
     }//refillAllHealth
+
+	public void refillSomeHealth(float healingAmount)
+	{
+		currentHealth = Mathf.Min(maxHealth, currentHealth + healingAmount);
+	}//refillAllHealth
     
     public void dealDamage(float damage, Vector2 damageLocation)
     {

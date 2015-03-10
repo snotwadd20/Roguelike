@@ -65,6 +65,11 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = startHealth;
     }//setStartingHealth
 
+	public void refillSomeHealth(float healingAmount)
+	{
+		currentHealth = Mathf.Min(startingHealth, currentHealth + healingAmount);
+	}//refillAllHealth
+
     public float health
     {
         get
