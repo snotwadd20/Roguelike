@@ -47,7 +47,6 @@ public class TurnManager
 	{
 		_turnNumber++;
 		doCallbacks();
-		ActLog.print(_turnNumber + "");
 	}//NextTurn
 
 	public void registerCallback(GameObject owner, TurnManagerCallback callBack)
