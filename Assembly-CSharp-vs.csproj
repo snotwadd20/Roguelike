@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\Region\R_Player.cs" />
      <Compile Include="Assets\Scripts\Region\R_Reward.cs" />
      <Compile Include="Assets\Scripts\RoguelikeControls.cs" />
+     <Compile Include="Assets\Scripts\Spells\AOEBurst.cs" />
      <Compile Include="Assets\Scripts\Spells\Missile.cs" />
      <Compile Include="Assets\Scripts\Spells\Spells.cs" />
      <Compile Include="Assets\Scripts\Spells\Targeter.cs" />

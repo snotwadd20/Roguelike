@@ -1,9 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spells.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spells\Missile.cs">
     <Files>
-      <File FileName="Assets\Scripts\SpellScroll.cs" Line="45" Column="1" />
-      <File FileName="Assets\Scripts\Spells.cs" Line="10" Column="10" />
+      <File FileName="Assets\Scripts\Spells\Missile.cs" Line="59" Column="50" />
+      <File FileName="Assets\Scripts\Spells\Spells.cs" Line="41" Column="15" />
+      <File FileName="Assets\Scripts\Items\SpellScroll.cs" Line="38" Column="9" />
+      <File FileName="Assets\Scripts\Spells\Targeter.cs" Line="46" Column="1" />
+      <File FileName="Assets\Scripts\Region\Enemies\EnemyMove.cs" Line="53" Column="1" />
+      <File FileName="Assets\Scripts\UI\ContainerUI.cs" Line="78" Column="5" />
+      <File FileName="Assets\Scripts\Pickable.cs" Line="13" Column="18" />
+      <File FileName="Assets\Scripts\Container.cs" Line="54" Column="3" />
+      <File FileName="Assets\Scripts\Items\HealingItem.cs" Line="37" Column="15" />
+      <File FileName="Assets\Scripts\Utility\TurnManager.cs" Line="50" Column="1" />
+      <File FileName="Assets\Scripts\PlayerHealth.cs" Line="49" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -35,6 +35,7 @@ public class SpellScroll : MonoBehaviour
 	
 	public void castSpell(Pickable pickable)
 	{
+		ActLog.print("You use a " + name);
 		Container holder = pickable.holdingContainer;
 		holder.hideUI();
 

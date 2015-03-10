@@ -3,8 +3,15 @@ using System.Collections;
 
 public class Spells
 {
+	public static GameObject magicMisslePrefab = null;
+
 	public static void MagicMissile(Collider2D[] colls, Vector3 mousePos, Transform caster)
 	{
+		if(magicMisslePrefab == null)
+		{
+			magicMisslePrefab = Resources.Load<GameObject>("Effects/magicMissile");
+		}//if
+
 		Missile missile = Missile.Create(caster.transform, mousePos, 20.0f, null);
 		missile.onExplode = (RaycastHit2D[] hits) => 
 		{
@@ -19,9 +26,17 @@ public class Spells
 			CheckForHits(hits, caster, 10);
 			//missile.gameObject.SetActive(false);
 		};//missile.OnExplode
-		SpriteRenderer sr = missile.gameObject.AddComponent<SpriteRenderer>();
-		sr.sprite = Resources.Load<Sprite>("Sprites/potion");
-		sr.sortingOrder = 1;
+
+		GameObject missileArt = (GameObject)GameObject.Instantiate(magicMisslePrefab);
+		missileArt.transform.position = missile.transform.position;
+		missileArt.transform.parent = missile.transform;
+
+
+		/*SpriteRenderer sr = missile.gameObject.AddComponent<SpriteRenderer>();
+
+		sr.color = Color.green;
+		sr.sprite = Resources.Load<Sprite>("Sprites/whiteSquare");
+		sr.sortingOrder = 1;*/
 	}//magicMissile
 
 	public static void CheckForHits(RaycastHit2D[] hits, Transform caster, float damage)
