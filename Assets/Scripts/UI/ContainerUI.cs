@@ -23,10 +23,12 @@ public class ContainerUI : MonoBehaviour
 
 		foreach(KeyValuePair<string, Pickable> item in container.contents)
 		{
+			Pickable pick = item.Value;
+
 			// do something with entry.Value or entry.Key
 			ItemButtonUI itemButton = ((GameObject)Instantiate(buttonPrefab.gameObject)).GetComponent<ItemButtonUI>();
 
-			SpriteRenderer sr = item.Value.gameObject.GetComponent<SpriteRenderer>();
+			SpriteRenderer sr = pick.gameObject.GetComponent<SpriteRenderer>();
 
 			if(sr != null)
 			{
@@ -35,14 +37,15 @@ public class ContainerUI : MonoBehaviour
 				itemButton.image.color = sr.color;
 			}//if
 
-			itemButton.item = item.Value;
+			itemButton.item = pick;
 
 			itemButton.gameObject.SetActive(true);
 			itemButton.transform.SetParent(contentPanel);
 
 			itemButton.transform.localScale = Vector3.one;
 
-			itemButton.button.onClick.AddListener(() => {use(item.Value);} );
+
+			itemButton.button.onClick.AddListener(() => {use(pick);} );
 
 		}//foreach
 		Canvas.ForceUpdateCanvases();
@@ -60,6 +63,10 @@ public class ContainerUI : MonoBehaviour
 		if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.I))
 			Close();
 	}//Update
+
+	private void clickButton()
+	{
+	}//clickButton
 
 	public void use(Pickable pickable)
 	{

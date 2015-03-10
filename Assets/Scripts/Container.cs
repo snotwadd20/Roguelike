@@ -48,10 +48,10 @@ public class Container : MonoBehaviour
 
 	public void Remove(string type)
 	{
-		//If there are none, removes it from the dictionary
+/*		//If there are none, removes it from the dictionary
 		if(contents[type] == null)
 			contents.Remove(type);
-
+*/
 		//If there are more left, removes one
 		contents[type].count--;
 

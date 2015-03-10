@@ -53,7 +53,8 @@
      <Compile Include="Assets\Scripts\Effects\TextureScroller.cs" />
      <Compile Include="Assets\Scripts\Effects\UColor.cs" />
      <Compile Include="Assets\Scripts\Effects\WaterRipple.cs" />
-     <Compile Include="Assets\Scripts\HealingItem.cs" />
+     <Compile Include="Assets\Scripts\Items\HealingItem.cs" />
+     <Compile Include="Assets\Scripts\Items\SpellScroll.cs" />
      <Compile Include="Assets\Scripts\Pickable.cs" />
      <Compile Include="Assets\Scripts\Picker.cs" />
      <Compile Include="Assets\Scripts\PlaySingleSound.cs" />
@@ -68,8 +69,9 @@
      <Compile Include="Assets\Scripts\Region\R_Player.cs" />
      <Compile Include="Assets\Scripts\Region\R_Reward.cs" />
      <Compile Include="Assets\Scripts\RoguelikeControls.cs" />
-     <Compile Include="Assets\Scripts\SpellScroll.cs" />
-     <Compile Include="Assets\Scripts\Targeter.cs" />
+     <Compile Include="Assets\Scripts\Spells\Missile.cs" />
+     <Compile Include="Assets\Scripts\Spells\Spells.cs" />
+     <Compile Include="Assets\Scripts\Spells\Targeter.cs" />
      <Compile Include="Assets\Scripts\UI\ContainerUI.cs" />
      <Compile Include="Assets\Scripts\UI\FadeScrollTextUI.cs" />
      <Compile Include="Assets\Scripts\UI\ItemButtonUI.cs" />

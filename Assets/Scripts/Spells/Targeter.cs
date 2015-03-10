@@ -41,17 +41,18 @@ public class Targeter : MonoBehaviour
 
 			Collider2D[] colls = Physics2D.OverlapCircleAll(clickPos, 1.0f, 1 << LayerMask.NameToLayer("Enemies"));
 
-			fireSpellAt(colls, clickPos);
+			fireSpellAt(colls, clickPos, R_Player.self.transform);
 
 			gameObject.SetActive(false);
+
 		}//if
 	}//Update
 
-	private void fireSpellAt(Collider2D[] targets, Vector3 mousePos)
+	private void fireSpellAt(Collider2D[] targets, Vector3 mousePos, Transform caster)
 	{
 		if(callback != null)
 		{
-			callback(targets, mousePos);
+			callback(targets, mousePos, caster);
 		}//fireSpellAt
 	}//fireSpellAt
 }//Targeter

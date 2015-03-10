@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HealingItem.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spells.cs">
     <Files>
-      <File FileName="Assets\Scripts\HealingItem.cs" Line="43" Column="15" />
+      <File FileName="Assets\Scripts\SpellScroll.cs" Line="45" Column="1" />
+      <File FileName="Assets\Scripts\Spells.cs" Line="10" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

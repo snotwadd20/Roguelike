@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public delegate void SpellCallback(Collider2D[] colls, Vector3 mousePos);
+public delegate void SpellCallback(Collider2D[] colls, Vector3 mousePos, Transform caster);
 
 public class SpellScroll : MonoBehaviour 
 {
@@ -11,6 +11,8 @@ public class SpellScroll : MonoBehaviour
 
 	public float damageAmount = 100;
 	public const string TYPE = "spellScroll";
+
+	public SpellCallback spellCastFunction = null;
 
 	public int count  = 1;
 	// Use this for initialization
@@ -26,22 +28,20 @@ public class SpellScroll : MonoBehaviour
 		pickableScript.type = TYPE;
 		pickableScript.count = count;
 		pickableScript.callback = castSpell;
-	}
+
+		if(spellCastFunction == null)
+			spellCastFunction = Spells.MagicMissile;
+	}//Start
 	
 	public void castSpell(Pickable pickable)
 	{
 		Container holder = pickable.holdingContainer;
 		holder.hideUI();
 
-		Targeter.self.enabled = true;
-		Targeter.self.callback = magicMissile;
+		Targeter.self.gameObject.SetActive(true);
+		Targeter.self.callback = spellCastFunction;
 		holder.Remove(pickable.type);
 	}//castSpell
-
-	private void magicMissile(Collider2D[] colls, Vector3 mousePos)
-	{
-		print ("MAGIC MISSILE!!! " + mousePos + ((colls != null && colls.Length > 0) ? " TARGET HIT: " + colls[0].name : ""));
-	}//magicMissile
 
 }//SpellScroll
 

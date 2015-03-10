@@ -31,10 +31,17 @@ public class HealingItem : MonoBehaviour
 		EnemyHealth eh = holder.gameObject.GetComponent<EnemyHealth>();
 
 		if(ph)
+		{
 			ph.refillSomeHealth(healingAmount);
+			ActLog.print(ph.gameObject.name + " used " + name + " for +" + healingAmount + "HP!");
+			TurnManager.NextTurn();
+		}//if
 
 		if(eh)
+		{
 			eh.refillSomeHealth(healingAmount);
+			ActLog.print(eh.gameObject.name + " used " + name + " for +" + healingAmount + "HP!");
+		}//if
 
 		holder.Remove(pickable.type);
 	}//healUser
