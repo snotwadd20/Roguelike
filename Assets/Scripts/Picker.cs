@@ -5,6 +5,7 @@ public class Picker : MonoBehaviour
 {
 	public Container inventory = null;
 
+	private bool pickup = false;
 	// Use this for initialization
 	void Start () 
 	{
@@ -16,7 +17,7 @@ public class Picker : MonoBehaviour
 
 	void OnTriggerStay2D(Collider2D coll)
 	{
-		if(Input.GetKeyDown(KeyCode.P))
+		if(pickup)
 		{
 			Pickable obj = coll.gameObject.GetComponent<Pickable>();
 			if(obj != null && inventory != null)
@@ -29,6 +30,6 @@ public class Picker : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-	
-	}
-}
+		pickup = Input.GetKeyDown(KeyCode.P);
+	}//Update
+}//Picker
