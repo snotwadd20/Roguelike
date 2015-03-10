@@ -36,8 +36,6 @@ public class HealingItem : MonoBehaviour
 		if(eh)
 			eh.refillSomeHealth(healingAmount);
 
-		pickable.count--;
-		if(pickable.count <= 0)
-			Destroy(pickable.gameObject);
+		holder.Remove(pickable.type);
 	}//healUser
 }//HealingItem

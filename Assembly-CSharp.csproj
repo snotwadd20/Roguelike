@@ -68,6 +68,8 @@
      <Compile Include="Assets\Scripts\Region\R_Player.cs" />
      <Compile Include="Assets\Scripts\Region\R_Reward.cs" />
      <Compile Include="Assets\Scripts\RoguelikeControls.cs" />
+     <Compile Include="Assets\Scripts\SpellScroll.cs" />
+     <Compile Include="Assets\Scripts\Targeter.cs" />
      <Compile Include="Assets\Scripts\UI\ContainerUI.cs" />
      <Compile Include="Assets\Scripts\UI\FadeScrollTextUI.cs" />
      <Compile Include="Assets\Scripts\UI\ItemButtonUI.cs" />

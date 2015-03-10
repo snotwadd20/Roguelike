@@ -6,6 +6,9 @@ public class Container : MonoBehaviour
 {
 	public Dictionary<string, Pickable> contents = null;
 	public new string name = "Container";
+
+	public ContainerUI currentGUI = null;
+
 	// Use this for initialization
 	void Awake () 
 	{
@@ -16,13 +19,21 @@ public class Container : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-	
 	}
 
 	public void showUI()
 	{
-		ContainerUI.Create(this);
+		currentGUI = ContainerUI.Create(this);
 	}//showUI
+
+	public void hideUI()
+	{
+		if(currentGUI != null)
+		{
+			currentGUI.Close();
+			currentGUI = null;
+		}//if
+	}//hideUI
 
 	public void Add(Pickable item)
 	{
@@ -34,6 +45,22 @@ public class Container : MonoBehaviour
 		}//else
 		item.gameObject.SetActive(false);
 	}//Add
+
+	public void Remove(string type)
+	{
+		//If there are none, removes it from the dictionary
+		if(contents[type] == null)
+			contents.Remove(type);
+
+		//If there are more left, removes one
+		contents[type].count--;
+
+		if(contents[type].count <= 0)
+		{
+			Destroy(contents[type]);
+			contents.Remove(type);
+		}//if
+	}//Remove
 
 
 }//Container

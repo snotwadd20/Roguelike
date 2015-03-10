@@ -23,7 +23,6 @@ public class ContainerUI : MonoBehaviour
 
 		foreach(KeyValuePair<string, Pickable> item in container.contents)
 		{
-
 			// do something with entry.Value or entry.Key
 			ItemButtonUI itemButton = ((GameObject)Instantiate(buttonPrefab.gameObject)).GetComponent<ItemButtonUI>();
 
@@ -56,14 +55,16 @@ public class ContainerUI : MonoBehaviour
 		transform.SetParent(mainCanvas, true);
 	}//OnEnable
 
+	void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.I))
+			Close();
+	}//Update
+
 	public void use(Pickable pickable)
 	{
 		pickable.use();
 	}//use
-
-	void Update()
-	{
-	}//Update
 
 	public void Close()
 	{
