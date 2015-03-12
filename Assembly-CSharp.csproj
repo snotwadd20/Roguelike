@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\ActLog.cs" />
+     <Compile Include="Assets\Scripts\CharacterSheet.cs" />
      <Compile Include="Assets\Scripts\Container.cs" />
      <Compile Include="Assets\Scripts\Effects\CameraShake.cs" />
      <Compile Include="Assets\Scripts\Effects\DestroyAfterTime.cs" />
