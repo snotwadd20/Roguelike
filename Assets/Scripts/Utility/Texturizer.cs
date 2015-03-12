@@ -341,6 +341,7 @@ public class Texturizer
         else
             quad.name = "Texturizer texture: " + color.ToString();
 
+
         return quad;
 
     }//makeObject
@@ -419,6 +420,10 @@ public class Texturizer
         
         MeshRenderer mr = plane.AddComponent<MeshRenderer>();
         mr.material.shader = shader;
+		mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+		mr.receiveShadows = false;
+		mr.reflectionProbeUsage = UnityEngine.Rendering.ReflectionProbeUsage.Off;
+		mr.useLightProbes = false;
 
         if(color.a == 1)
             mr.material.color = color;
