@@ -57,10 +57,11 @@ public class Container : MonoBehaviour
 	void setupPrefabs()
 	{
 		prefabs = new List<Pickable>();
-		//prefabs.Add(Resources.Load<GameObject>("Objects/chest"));
+
 		prefabs.Add(Resources.Load<GameObject>("Objects/scrollFireball").GetComponent<Pickable>());
 		prefabs.Add(Resources.Load<GameObject>("Objects/scrollMagicMissile").GetComponent<Pickable>());
 		prefabs.Add(Resources.Load<GameObject>("Objects/healingPotion").GetComponent<Pickable>());
+		prefabs.Add(Resources.Load<GameObject>("Objects/gem").GetComponent<Pickable>());
 
 
 		foreach(Pickable prefab in prefabs)

@@ -34,7 +34,8 @@ public class Pickable : MonoBehaviour
 
 	public void use()
 	{
-		callback(this);
+		if(callback != null)
+			callback(this);
 	}//use
 
 	public void RegisterCallback(InventoryClickCallback callback)

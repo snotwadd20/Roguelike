@@ -144,8 +144,19 @@ public class EquipUI : MonoBehaviour
 
 	private void swapGems(InventoryGemButton gem1, EquippedGemButton gem2)
 	{
-		Gem temp = gem1.gem;
-		gem1.gem = gem2.gem;
-		gem2.gem = temp;
+		//If the equip gem is one of the zero-gems they get initially, don't put it in the inventory
+		if(gem2.gem.value <= 0)
+		{
+			gem2.gem = gem1.gem;
+			gem1.gem.pickable.holdingContainer.Remove(gem1.gem.pickable.type);
+			if(gem1.gem.pickable.count <= 0)
+				Destroy(gem1.gameObject);
+		}//if
+		else
+		{
+			Gem temp = gem1.gem;
+			gem1.gem = gem2.gem;
+			gem2.gem = temp;
+		}//else
 	}//swapGems
 }//EquipUI

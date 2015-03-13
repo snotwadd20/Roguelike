@@ -56,6 +56,8 @@
      <Compile Include="Assets\Scripts\Effects\TextureScroller.cs" />
      <Compile Include="Assets\Scripts\Effects\UColor.cs" />
      <Compile Include="Assets\Scripts\Effects\WaterRipple.cs" />
+     <Compile Include="Assets\Scripts\Gem.cs" />
+     <Compile Include="Assets\Scripts\Items\GemPickable.cs" />
      <Compile Include="Assets\Scripts\Items\HealingItem.cs" />
      <Compile Include="Assets\Scripts\Items\SpellScroll.cs" />
      <Compile Include="Assets\Scripts\Pickable.cs" />
@@ -80,9 +82,7 @@
      <Compile Include="Assets\Scripts\UI\ContainerUI.cs" />
      <Compile Include="Assets\Scripts\UI\Equip Screen\EquipUI.cs" />
      <Compile Include="Assets\Scripts\UI\Equip Screen\EquippedGemButton.cs" />
-     <Compile Include="Assets\Scripts\UI\Equip Screen\Gem.cs" />
      <Compile Include="Assets\Scripts\UI\Equip Screen\GemFilteredContainer.cs" />
-     <Compile Include="Assets\Scripts\UI\Equip Screen\GemPickable.cs" />
      <Compile Include="Assets\Scripts\UI\Equip Screen\InventoryGemButton.cs" />
      <Compile Include="Assets\Scripts\UI\Equip Screen\StatTotalDisplay.cs" />
      <Compile Include="Assets\Scripts\UI\FadeScrollTextUI.cs" />

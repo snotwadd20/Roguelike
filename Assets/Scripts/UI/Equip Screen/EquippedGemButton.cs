@@ -26,6 +26,12 @@ public class EquippedGemButton : MonoBehaviour
 
 		//TODO: SET THE IMAGE HERE BASED ON THE TYPE
 		gemImage.enabled = (value != 0);
+
+		if(gem == null)
+		{
+			gem = new Gem(0, Gem.Kind.None, null);
+		}//if
+
 		gemImage.sprite = gem.getSprite();
 
 		if(gem.typeI == colNumber)

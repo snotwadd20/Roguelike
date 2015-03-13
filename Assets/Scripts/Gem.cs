@@ -5,20 +5,23 @@ public class Gem
 {
 	public int value = 1;
 	public Kind type = Kind.None;
+
+	public Pickable pickable = null;
 	
 	public enum Kind {Attack, Defense, Luck, _NUM_KINDS, None};
 
 	public const int NUM_KINDS = (int)Kind._NUM_KINDS;
 
-	private static Sprite attackSprite = null;
-	private static Sprite defenseSprite = null;
-	private static Sprite luckSprite = null;
-	private static Sprite noneSprite = null;
+	public static Sprite attackSprite = null;
+	public static Sprite defenseSprite = null;
+	public static Sprite luckSprite = null;
+	public static Sprite noneSprite = null;
 	
-	public Gem(int value, Kind kind)
+	public Gem(int value, Kind kind, Pickable pickable)
 	{
 		this.value = value;
 		this.type = kind;
+		this.pickable = pickable;
 		
 		if(attackSprite == null)
 			attackSprite = Resources.Load<Sprite>("Sprites/Gems/Attack");
@@ -28,6 +31,9 @@ public class Gem
 		
 		if(luckSprite == null)
 			luckSprite = Resources.Load<Sprite>("Sprites/Gems/Luck");
+
+		if(noneSprite == null)
+			luckSprite = Resources.Load<Sprite>("Sprites/Gems/None");
 	}//constructor
 	
 	public Gem(int value, int kind)

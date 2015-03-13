@@ -30,6 +30,6 @@ public class Picker : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		pickup = Input.GetKeyDown(KeyCode.P);
+		pickup = Input.GetKeyUp(KeyCode.P);
 	}//Update
 }//Picker
