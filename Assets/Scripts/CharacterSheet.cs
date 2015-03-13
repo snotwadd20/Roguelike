@@ -41,7 +41,7 @@ public class CharacterSheet : MonoBehaviour
 		{
 			for(int x =0; x < Gem.NUM_KINDS; x++)
 			{
-				gemSlots[x,y] = new Gem(1, Gem.Kind.None);
+				gemSlots[x,y] = new Gem((int)Random.Range(1,3), (Gem.Kind)(int)Random.Range(1,3));
 			}//for
 		}//for
 	}//OnEnable
@@ -51,14 +51,15 @@ public class CharacterSheet : MonoBehaviour
 		if(gemSlots[x,y] == null)
 			return 0;
 
+		if(gemSlots[x, y].typeI == x)
+			return gemSlots[x,y].value * 2;
+
 		return gemSlots[x,y].value;
 	}//getSlotValue
 
 	public void SpawnUI()
 	{
-		//Two containers, and can drag between.
-		//Null is no gem
-		//Otherwise there's a gem object there
+		//TODO
 	}//SpawnUI
 
 	private float gemColumnValue(int column)
@@ -68,12 +69,7 @@ public class CharacterSheet : MonoBehaviour
 		{
 			if(gemSlots[column, i] != null)
 			{
-				int gemValue = gemSlots[column,i].value;
-				
-				//If the colors/types match, multiply by two
-				if(gemSlots[column, i].typeI == column)
-					gemValue *= 2;
-				
+				int gemValue = getSlotValue(column,i);
 				total += gemValue;
 			}//if
 		}//for
@@ -107,10 +103,24 @@ public class Gem
 
 	public enum Kind {Attack, Defense, Luck, _NUM_KINDS, None};
 
+	private static Sprite attackSprite = null;
+	private static Sprite defenseSprite = null;
+	private static Sprite luckSprite = null;
+	private static Sprite noneSprite = null;
+
 	public Gem(int value, Kind kind)
 	{
 		this.value = value;
 		this.type = kind;
+
+		if(attackSprite == null)
+			attackSprite = Resources.Load<Sprite>("UI/Gems/Attack");
+
+		if(defenseSprite == null)
+			defenseSprite = Resources.Load<Sprite>("UI/Gems/Defense");
+
+		if(luckSprite == null)
+			luckSprite = Resources.Load<Sprite>("UI/Gems/Luck");
 	}//constructor
 
 	public Gem(int value, int kind)
@@ -133,7 +143,35 @@ public class Gem
 
 	public Sprite getSprite()
 	{
-		//BASED ON VALUE
+		if(type == Kind.Attack)
+			return attackSprite;
+
+		if(type == Kind.Defense)
+			return defenseSprite;
+
+		if(type == Kind.Luck)
+			return luckSprite;
+
+		if(type == Kind.None)
+			return noneSprite;
+
 		return null;
 	}//getSprite
+
+	public Color getColor()
+	{
+		if(type == Kind.Attack)
+			return Color.red;
+		
+		if(type == Kind.Defense)
+			return Color.blue;
+		
+		if(type == Kind.Luck)
+			return Color.green;
+
+		if(type == Kind.None)
+			return Color.gray;
+		
+		return new Color(1,1,0);
+	}//getColor
 }//Gem

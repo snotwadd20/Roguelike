@@ -26,6 +26,12 @@ public class EquippedGemButton : MonoBehaviour
 
 		//TODO: SET THE IMAGE HERE BASED ON THE TYPE
 		gemImage.enabled = (value != 0);
+		gemImage.sprite = gem.getSprite();
+
+		if(gem.typeI == colNumber)
+			gemImage.color = UColor.ChangeBrightness(gem.getColor(), 0.65f);
+		else
+			gemImage.color = gem.getColor();
 
 	}//Update
 

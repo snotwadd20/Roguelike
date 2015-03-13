@@ -20,14 +20,13 @@ public class InventoryGemButton : MonoBehaviour
 		if(_gem == null)
 		{
 			valueCounter.text = "N";
-			gemImage.enabled = false;
+			gemImage.color = new Color(1,1,0);
 			return;
 		}//if
 
-		valueCounter.text = "" + _gem.value;
-		gemImage.sprite = _gem.getSprite();
-
-
+		valueCounter.text = "" + gem.value;
+		gemImage.sprite = gem.getSprite();
+		gemImage.color = gem.getColor();
 	}//Update
 
 	void OnEnable()
