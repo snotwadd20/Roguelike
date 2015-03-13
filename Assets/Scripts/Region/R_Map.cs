@@ -70,7 +70,15 @@ public class R_Map : MonoBehaviour
 	private int[] mapSeeds = null;
 	public const int MAX_LEVELS = 20;
 
-	public List<GameObject> allCreatedObjects = null;
+	private List<GameObject> allCreatedObjects = null;
+
+	public static int Level
+	{
+		get
+		{
+			return R_Map.self.mapLevel;
+		}//get
+	}//Level
 
     public void initializeLists()
     {
@@ -139,56 +147,80 @@ public class R_Map : MonoBehaviour
     //********************************
     void OnEnable () 
     {
+		InitAll ();
+    }//Awake
+
+	void OnDisable()
+	{
+		CleanUp();
+	}//OnDisable
+
+	//********************************
+	// OTHER IMPORTANT FUNCTIONS
+	//********************************
+	void InitAll()
+	{
 		if(self == null)
 			self = this;
+
+		mapLevel = Mathf.Clamp(mapLevel, 0, MAX_LEVELS-1);
 
 		if(!useSeed)
 		{
 			seed = (int) DateTime.Now.Ticks % 1234567890;
 		}//if
-
+		
 		//Set up the initial seed that will make all the mapSeeds
 		r = new RandomSeed(seed);
 		initializeLists();
-
+		
 		//Now set up a new generator using the correct mapLevel seed
 		r.setSeed(mapSeeds[mapLevel]);
-
-        generateMaze();
-        startPos = new SerializedPoint(r.getIntInRange(0, linksWidth-1),r.getIntInRange(0, linksHeight-1));
-        floodMaze(-1, startPos);
-
-        setUpTilesArray();
-
+		
+		generateMaze();
+		startPos = new SerializedPoint(r.getIntInRange(0, linksWidth-1),r.getIntInRange(0, linksHeight-1));
+		floodMaze(-1, startPos);
+		
+		setUpTilesArray();
+		
 		removeSmallWalls();
-        //Output the region as tiles
-        ToTiles();
+		//Output the region as tiles
+		ToTiles();
+		
+		//DEBUG
+		print(ToString());
+	}//InitAll
 
-        //DEBUG
-        print(ToString());
-    }//Awake
-
-	void OnDisable()
+	void CleanUp()
 	{
 		links = null;
 		floodVals = null;
 		tiles = null;
 		corners = null;
-
+		
 		for(int i=0; i < allCreatedObjects.Count; i++)
 		{
 			Destroy(allCreatedObjects[i]);
 		}//for
+		allCreatedObjects = null;
 		GC.Collect();
-	}//OnDisable
+	}//CleanUp
 
-    void Update()
-    {
-    }//Update
+	public static int loadNextLevel()
+	{
+		R_Map.self.mapLevel++;
+		R_Map.self.CleanUp();
+		R_Map.self.InitAll();
+		return Level;
+	}//loadNextLevel
 
-    void Start()
-    {
-    }//Start
+	public static int loadPrevLevel()
+	{
+		R_Map.self.mapLevel--;
+		R_Map.self.CleanUp();
+		R_Map.self.InitAll();
+		return Level;
+	}//lastLevel
 
     //********************************
     // MAZE GENERATION FUNCTIONS
@@ -275,14 +307,14 @@ public class R_Map : MonoBehaviour
         for(int y =0; y < linksHeight; y++)
         {
             for(int x =0; x < linksWidth; x++)
-            {
-                if(y == 0 || x == 0 || y == height-1 || x == width-1)
+            { 
+                if(y == 0 || x == 0 || y == height-1 || x == width-1) // Edge
                 {
-                    if(floodVals[x,y] > bestCellValue)
-                    {
-                        bestCellValue = floodVals[x,y];
-                    }//if
                 }//if
+				else if(floodVals[x,y] > bestCellValue)
+				{
+					bestCellValue = floodVals[x,y];
+				}//if
             }//for
         }//for
 
@@ -290,13 +322,13 @@ public class R_Map : MonoBehaviour
         {
             for(int x =0; x < linksWidth; x++)
             {
-                if(y == 0 || x == 0 || y == height-1 || x == width-1)
+                if(y == 0 || x == 0 || y == height-1 || x == width-1) //Edge
                 {
-                    if(floodVals[x,y] == bestCellValue)
-                    {
-                        possibleCells.Add(new SerializedPoint(x,y));
-                    }//if
                 }//if
+				else if(floodVals[x,y] > bestCellValue - 3 && tiles[x,y] != WALL_TILE)
+				{
+					possibleCells.Add(new SerializedPoint(x,y));
+				}//if
             }//for
         }//for
 
@@ -791,6 +823,10 @@ public class R_Map : MonoBehaviour
         backdrop.transform.parent = transform;
 
 		allCreatedObjects.Add(backdrop);
+
+		//Add Staircases
+		R_Stairs.Create(startPos + (Vector3.forward * -1), false); //UP
+		R_Stairs.Create(endPos + (Vector3.forward * -1), true); //Down
     }//toTiles
 
     //********************************
