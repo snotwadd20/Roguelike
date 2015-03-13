@@ -41,7 +41,7 @@ public class CharacterSheet : MonoBehaviour
 		{
 			for(int x =0; x < Gem.NUM_KINDS; x++)
 			{
-				gemSlots[x,y] = new Gem((int)Random.Range(1,3), (Gem.Kind)(int)Random.Range(1,3));
+				gemSlots[x,y] = new Gem((int)Random.Range(1,3), (Gem.Kind)(int)Random.Range(0,2));
 			}//for
 		}//for
 	}//OnEnable
