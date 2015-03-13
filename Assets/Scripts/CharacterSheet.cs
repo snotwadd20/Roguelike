@@ -5,7 +5,7 @@ public class CharacterSheet : MonoBehaviour
 {
 	public const int NUM_GEM_ROWS = 3;
 
-	private Gem[,] gemSlots = null;
+	public Gem[,] gemSlots = null;
 
 	public float Attack
 	{
@@ -36,6 +36,14 @@ public class CharacterSheet : MonoBehaviour
 	{
 		if(gemSlots == null)
 			gemSlots = new Gem[Gem.NUM_KINDS, NUM_GEM_ROWS];
+
+		for(int i=0; i < 3; i++)
+		{
+			if(gemSlots[i,i] == null)
+			{
+				gemSlots[i,i] = new Gem(i, i%2+1);
+			}//if
+		}//foreach
 	}//OnEnable
 	
 	public int getSlotValue(int x, int y)
