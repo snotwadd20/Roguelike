@@ -18,10 +18,10 @@ public class Container : MonoBehaviour
 
 	private static RandomSeed r = null;
 	// Use this for initialization
-	void Awake () 
+	void Start () 
 	{
 		if(r == null)
-			r = new RandomSeed((int)(DateTime.Now.Ticks % 1234567890));
+			r = new RandomSeed(R_Map.self.seed);
 
 		if(contents == null)
 			contents = new Dictionary<string,Pickable>();
@@ -48,9 +48,16 @@ public class Container : MonoBehaviour
 
 		for(int i=0; i < r.getIntInRange(2, 5); i++)
 		{
-			Pickable pick = prefabs[r.getIntInRange(0, prefabs.Count-1)];
-			Instantiate<GameObject>(pick.gameObject);
-			Add(pick);
+			Pickable prefab = prefabs[r.getIntInRange(0, prefabs.Count-1)];
+			Pickable instance = Instantiate<GameObject>(prefab.gameObject).GetComponent<Pickable>();
+			instance.gameObject.SetActive(true);
+			instance.holdingContainer = this;
+			instance.count = 1;
+
+			//Do stuff for gem amounts here
+			//TODO
+
+			Add(instance);
 		}//for
 	}//fillRandomly
 

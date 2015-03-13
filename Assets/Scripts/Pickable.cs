@@ -8,9 +8,17 @@ public class Pickable : MonoBehaviour
 	public string type = "Nada";
 	public int count = 1;
 
-	public InventoryClickCallback callback = null;
+	private InventoryClickCallback _callback = null;
 
 	public Container holdingContainer = null;
+
+	public InventoryClickCallback callback
+	{
+		get
+		{
+			return _callback;
+		}//get
+	}//callback
 
 	// Use this for initialization
 	void Start () 
@@ -34,13 +42,13 @@ public class Pickable : MonoBehaviour
 
 	public void use()
 	{
-		if(callback != null)
-			callback(this);
+		if(_callback != null)
+			_callback(this);
 	}//use
 
 	public void RegisterCallback(InventoryClickCallback callback)
 	{
-		this.callback = callback;
+		this._callback = callback;
 	}//
 
 	public delegate void InventoryClickCallback(Pickable pickable);

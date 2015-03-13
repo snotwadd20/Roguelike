@@ -15,7 +15,7 @@ public class SpellScroll : MonoBehaviour
 
 	public int count  = 1;
 	// Use this for initialization
-	void Start () 
+	void OnEnable () 
 	{
 		if(pickableScript == null)
 			pickableScript = gameObject.GetComponent<Pickable>();
@@ -26,7 +26,7 @@ public class SpellScroll : MonoBehaviour
 		pickableScript.name = name;
 		pickableScript.type = spellType + "";
 		pickableScript.count = count;
-		pickableScript.callback = castSpell;
+		pickableScript.RegisterCallback(castSpell);
 
 		if(spellCastFunction == null)
 		{

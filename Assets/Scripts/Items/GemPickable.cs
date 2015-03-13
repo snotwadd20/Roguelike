@@ -38,7 +38,7 @@ public class GemPickable : MonoBehaviour
 
 		colorGem();
 
-		pickableScript.callback = (Pickable) => {ActLog.print("Press C to equip gems.");};
+		pickableScript.RegisterCallback((Pickable) => {ActLog.print("Press C to equip gems.");});
 	}//OnEnable
 
 	private void colorGem()

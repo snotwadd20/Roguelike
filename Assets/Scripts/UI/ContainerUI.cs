@@ -53,7 +53,7 @@ public class ContainerUI : MonoBehaviour
 		Canvas.ForceUpdateCanvases();
 		//Canvas.ForceUpdateCanvases();
 
-		//Time.timeScale = 0;
+		Time.timeScale = 0;
 
 		transform.SetParent(mainCanvas, true);
 	}//OnEnable
@@ -75,7 +75,7 @@ public class ContainerUI : MonoBehaviour
 
 	public void Close()
 	{
-		//Time.timeScale = 1;
+		Time.timeScale = 1;
 		Destroy(gameObject);
 		//gameObject.SetActive(false);
 	}//Close

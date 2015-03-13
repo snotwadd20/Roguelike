@@ -10,7 +10,7 @@ public class HealingItem : MonoBehaviour
 	public const string TYPE = "healingItem";
 
 	// Use this for initialization
-	void Start () 
+	void OnEnable () 
 	{
 		if(pickableScript == null)
 			pickableScript = gameObject.GetComponent<Pickable>();
@@ -21,7 +21,7 @@ public class HealingItem : MonoBehaviour
 		pickableScript.name = name;
 		pickableScript.type = TYPE;
 		pickableScript.count = count;
-		pickableScript.callback = healUser;
+		pickableScript.RegisterCallback(healUser);
 	}
 
 	public void healUser(Pickable pickable)
