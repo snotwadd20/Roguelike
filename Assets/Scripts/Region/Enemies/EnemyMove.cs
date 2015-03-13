@@ -19,6 +19,8 @@ public class EnemyMove : MonoBehaviour
 
 	public bool moveIsAttack = true;
 
+	public float damage = 10.0f;
+
 	//Private
 	private SerializedPoint destination = null;
 	private bool wasOffScreen = true;
@@ -53,18 +55,20 @@ public class EnemyMove : MonoBehaviour
 		targetTile.position = R_Player.self.transform.position;
 
 		//Move to the next spot
-		transform.position = destination;
+		transform.position = ((Vector3)destination) + Vector3.forward * -1;
 	}//Update
 
 	//Thing that happens ever turn (deciding to move, attack, etc)
 	void OnTurn(int turnNumber)
 	{
-		chase ();
+		if(state == WANDER)
+			wander ();
+		else if (state == CHASE)
+			chase ();
 
 		if(moveIsAttack)
 		{
 			//Check the destination and see if the player is there
-
 			RaycastHit2D hit = raycastTo(destination - transform.position, 1.0f, "Player");
 			if(hit.collider != null)
 			{
@@ -73,25 +77,6 @@ public class EnemyMove : MonoBehaviour
 				doAttack();
 			}//if
 		}//if
-
-		/*if(state == WANDER)
-			wander ();
-		else if (state == CHASE)
-		{
-			chase();
-
-			if(!canSeePlayer)
-				turnsChasingBlind++;
-			else
-				turnsChasingBlind = 0;
-
-			if(turnsChasingBlind >= maxBlindChaseTurns)
-			{
-				state = WANDER;
-				turnsChasingBlind = 0;
-				ActLog.print("The monster lost your trail");
-			}//if
-		}//else if*/
 
 		//IF the monster came on screen this frame, notify the player
 		if(!isOnScreen())
@@ -114,9 +99,9 @@ public class EnemyMove : MonoBehaviour
 	public void doAttack()
 	{
 		CameraShake.Shake(Camera.main, 0.25f, 0.4f, 1.0f, Vector2.zero) ;
-		ActLog.print("Monster attacked player for 10 damage!");
+		ActLog.print("Monster attacked player for " + damage + " damage!");
 		PlayerHealth ph = R_Player.self.GetComponent<PlayerHealth>();
-		ph.dealDamage(10, transform.position);
+		ph.dealDamage(damage, transform.position);
 	}//doAttack
 
 	public bool isOnScreen(Camera cam = null)
@@ -172,7 +157,6 @@ public class EnemyMove : MonoBehaviour
 			lastMoveDir = dirToGo;
 			destination += R_Map.self.findNeighbor(0,0, dirToGo);
 		}//if
-
 
 	}//chase
 

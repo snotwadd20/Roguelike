@@ -42,10 +42,15 @@ public class R_Player : MonoBehaviour
 	private bool justAttacked = false;
 	private int ignoreRaycastLayer = 0;
 
+	public CharacterSheet stats = null;
+
     public void Start()
     {
         if(self == null)
             self = this;
+
+		if(stats == null)
+			stats = GetComponent<CharacterSheet>();
 
         if(t == null)
         {
@@ -198,8 +203,10 @@ public class R_Player : MonoBehaviour
 						EnemyHealth eh = hit.collider.gameObject.GetComponent<EnemyHealth>();
 						if(eh != null)
 						{
-							ActLog.print("Player did 10 damage to enemy");
-							eh.dealDamage(10);
+							float mult = 2;
+							float damage = 1 + (mult * stats.Attack);
+							ActLog.print("Player did " + damage + " damage to enemy");
+							eh.dealDamage(damage);
 							CameraShake.Shake(Camera.main, 0.25f, 0.4f, 1.0f, Vector2.zero) ;
 						}//if
 						TurnManager.NextTurn();

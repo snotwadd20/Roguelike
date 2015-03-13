@@ -166,6 +166,19 @@ public class R_Map : MonoBehaviour
 	}//OnDisable
 
 	//********************************
+	// CONTENT PLACEMENT FUNCTIONS
+	//********************************
+	public void placeMonsters(List<SerializedPoint> places)
+	{
+		while(places.Count > 0)
+		{
+			SerializedPoint pos = randomPointFromList(ref places);
+			if(Vector2.Distance(pos, startPos) >= 10)
+				MonsterMaker.Spawn(pos);
+		}//while*/
+	}//placeMonsters
+
+	//********************************
 	// OTHER IMPORTANT FUNCTIONS
 	//********************************
 	void InitAll()
@@ -193,10 +206,13 @@ public class R_Map : MonoBehaviour
 		
 		setUpTilesArray();
 		
-		removeSmallWalls();
+		List<SerializedPoint> monsterPlaces = removeSmallWalls();
+
 		//Output the region as tiles
 		ToTiles();
-		
+
+		placeMonsters(monsterPlaces);
+
 		//DEBUG
 		print(ToString());
 
@@ -250,8 +266,9 @@ public class R_Map : MonoBehaviour
     //********************************
 	//-------------------------------
 	//Removes any 1-unit walls from the tiles array
-	public void removeSmallWalls()
+	public List<SerializedPoint> removeSmallWalls()
 	{
+		List<SerializedPoint> list = new List<SerializedPoint>();
 		for(int y=0; y < height; y++)
 		{
 			for(int x=0; x < width; x++)
@@ -279,10 +296,12 @@ public class R_Map : MonoBehaviour
 					if(connections == 0)
 					{
 						tiles[x,y] = GROUND_TILE;
+						list.Add(new SerializedPoint(x,y));
 					}//if
 				}//if
 			}//for
 		}//for
+		return list;
 	}//removeSmallWalls
 
 	//-------------------------------
