@@ -5,7 +5,7 @@ public class CharacterSheet : MonoBehaviour
 {
 	public const int NUM_GEM_ROWS = 3;
 
-	public Gem[,] gemSlots = null;
+	private Gem[,] gemSlots = null;
 
 	public float Attack
 	{
@@ -38,6 +38,13 @@ public class CharacterSheet : MonoBehaviour
 			gemSlots = new Gem[Gem.NUM_KINDS, NUM_GEM_ROWS];
 	}//OnEnable
 	
+	public int getSlotValue(int x, int y)
+	{
+		if(gemSlots[x,y] == null)
+			return 0;
+
+		return gemSlots[x,y].value;
+	}//getSlotValue
 
 	public void SpawnUI()
 	{
@@ -115,4 +122,10 @@ public class Gem
 			type = (Kind)value;
 		}//set
 	}//typeI
+
+	public Sprite getSprite()
+	{
+		//BASED ON VALUE
+		return null;
+	}//getSprite
 }//Gem
