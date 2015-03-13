@@ -5,6 +5,8 @@ public class RoguelikeControls : MonoBehaviour
 {
 	private string alphabet = "bcefghijklmnoqrtuvwxyz1234567890"; //minus wasd and p
 
+	public EquipUI equipMenu = null;
+
 	void executeControl(string key)
 	{
 		switch(key)
@@ -12,7 +14,10 @@ public class RoguelikeControls : MonoBehaviour
 			case "i":
 				Container inventory = gameObject.GetComponent<Container>();
 				inventory.showUI();
-			break;
+				break;
+			case "c":
+				equipMenu.gameObject.SetActive(true);
+				break;
 		}//switch
 	}//executeControl
 	
@@ -29,5 +34,5 @@ public class RoguelikeControls : MonoBehaviour
 				executeControl(letter + "");
 			}//if
 		}//foreach
-	}
-}
+	}//Update
+}//RoguelikeControls

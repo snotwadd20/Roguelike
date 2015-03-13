@@ -4,15 +4,13 @@ using System.Collections;
 
 public class InventoryGemButton : MonoBehaviour 
 {
-	private Gem _gem = null;
+	public Gem _gem = null;
 
 	public Text valueCounter = null;
 	public Image gemImage = null;
 	public Image buttonArt = null;
 
 	private Color origColor;
-
-
 
 	// Update is called once per frame
 	void Update () 

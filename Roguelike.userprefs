@@ -1,13 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\Equip Screen\InventoryGemButton.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\Equip Screen\GemPickable.cs">
     <Files>
-      <File FileName="Assets\Scripts\Container.cs" Line="7" Column="36" />
-      <File FileName="Assets\Scripts\CharacterSheet.cs" Line="128" Column="19" />
-      <File FileName="Assets\Scripts\Pickable.cs" Line="4" Column="1" />
-      <File FileName="Assets\Scripts\UI\Equip Screen\StatTotalDisplay.cs" Line="31" Column="28" />
-      <File FileName="Assets\Scripts\UI\Equip Screen\EquippedGemButton.cs" Line="23" Column="11" />
-      <File FileName="Assets\Scripts\UI\Equip Screen\InventoryGemButton.cs" Line="15" Column="3" />
+      <File FileName="Assets\Scripts\CharacterSheet.cs" Line="95" Column="18" />
+      <File FileName="Assets\Scripts\RoguelikeControls.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Container.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\ContainerUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Pickable.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\Equip Screen\Gem.cs" Line="4" Column="1" />
+      <File FileName="Assets\Scripts\UI\Equip Screen\GemPickable.cs" Line="17" Column="15" />
+      <File FileName="Assets\Scripts\UI\Equip Screen\InventoryGemButton.cs" Line="7" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

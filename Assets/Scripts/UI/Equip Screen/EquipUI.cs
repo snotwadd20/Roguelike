@@ -9,10 +9,23 @@ public class EquipUI : MonoBehaviour
 	public InventoryGemButton invButtonSelected = null;
 	public EquippedGemButton equipButtonSelected = null;
 
+	private static Transform mainCanvas = null;
+
+	public static EquipUI self = null;
+
 	// Use this for initialization
 	void OnEnable () 
 	{
+		if(self == null)
+		{
+			self = this;
+		}//if
+
+		if(mainCanvas == null)
+			mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
+
 		Time.timeScale = 0;
+		transform.SetParent(mainCanvas, true);
 	}//OnEnable
 
 	void OnDisable () 
@@ -63,7 +76,17 @@ public class EquipUI : MonoBehaviour
 			}//else
 		}//if
 
+		if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.C))
+			Close();
+
 	}//Update
+
+	public void Close()
+	{
+		//Time.timeScale = 1;
+		gameObject.SetActive(false);
+		//gameObject.SetActive(false);
+	}//Close
 
 	private void doButtonSelection(MonoBehaviour selected)
 	{
