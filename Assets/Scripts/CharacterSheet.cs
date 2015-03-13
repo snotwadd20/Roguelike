@@ -37,13 +37,13 @@ public class CharacterSheet : MonoBehaviour
 		if(gemSlots == null)
 			gemSlots = new Gem[Gem.NUM_KINDS, NUM_GEM_ROWS];
 
-		for(int i=0; i < 3; i++)
+		for(int y =0; y < NUM_GEM_ROWS; y++)
 		{
-			if(gemSlots[i,i] == null)
+			for(int x =0; x < Gem.NUM_KINDS; x++)
 			{
-				gemSlots[i,i] = new Gem(i, i%2+1);
-			}//if
-		}//foreach
+				gemSlots[x,y] = new Gem(1, Gem.Kind.None);
+			}//for
+		}//for
 	}//OnEnable
 	
 	public int getSlotValue(int x, int y)
@@ -105,7 +105,7 @@ public class Gem
 	public int value = 1;
 	public Kind type = Kind.Attack;
 
-	public enum Kind {Attack, Defense, Luck, _NUM_KINDS};
+	public enum Kind {Attack, Defense, Luck, _NUM_KINDS, None};
 
 	public Gem(int value, Kind kind)
 	{
