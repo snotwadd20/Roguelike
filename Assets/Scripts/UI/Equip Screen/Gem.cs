@@ -21,13 +21,13 @@ public class Gem
 		this.type = kind;
 		
 		if(attackSprite == null)
-			attackSprite = Resources.Load<Sprite>("UI/Gems/Attack");
+			attackSprite = Resources.Load<Sprite>("Sprites/Gems/Attack");
 		
 		if(defenseSprite == null)
-			defenseSprite = Resources.Load<Sprite>("UI/Gems/Defense");
+			defenseSprite = Resources.Load<Sprite>("Sprites/Gems/Defense");
 		
 		if(luckSprite == null)
-			luckSprite = Resources.Load<Sprite>("UI/Gems/Luck");
+			luckSprite = Resources.Load<Sprite>("Sprites/Gems/Luck");
 	}//constructor
 	
 	public Gem(int value, int kind)

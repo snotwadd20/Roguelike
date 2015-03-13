@@ -173,8 +173,10 @@ public class R_Map : MonoBehaviour
 		while(places.Count > 0)
 		{
 			SerializedPoint pos = randomPointFromList(ref places);
+			//GameObject monster = null;
+
 			if(Vector2.Distance(pos, startPos) >= 10)
-				MonsterMaker.Spawn(pos);
+				allCreatedObjects.Add(MonsterMaker.Spawn(pos));
 		}//while*/
 	}//placeMonsters
 

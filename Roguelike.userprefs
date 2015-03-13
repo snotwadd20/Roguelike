@@ -1,15 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Region\R_Map.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Container.cs">
     <Files>
-      <File FileName="Assets\Scripts\Region\R_Stairs.cs" Line="77" Column="60" />
-      <File FileName="Assets\Scripts\Picker.cs" Line="30" Column="2" />
-      <File FileName="Assets\Scripts\RoguelikeControls.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Region\R_Map.cs" Line="177" Column="13" />
-      <File FileName="Assets\Scripts\Utility\SerializedPoint.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Region\FOVSquare.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Region\R_Player.cs" Line="89" Column="30" />
-      <File FileName="Assets\Scripts\Region\Enemies\EnemyMove.cs" Line="158" Column="1" />
+      <File FileName="Assets\Scripts\Container.cs" Line="79" Column="2" />
+      <File FileName="Assets\Scripts\Region\R_Map.cs" Line="166" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

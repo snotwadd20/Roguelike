@@ -44,7 +44,7 @@ public class UColor
             Debug.Log("Ucolor.cs got a broken random seed request.");
         }
 
-        UColor.HSL theColor = new UColor.HSL((float)r.getRandom(), 0.7f, 0.3f); //Choose a  color
+        UColor.HSL theColor = new UColor.HSL((float)r.getRandom(), 0.7f, 0.8f); //Choose a  color
         Color color = theColor.toColor();
         return color;
     }//RandomColor
