@@ -28,7 +28,7 @@ public class FOVSquare : MonoBehaviour
 	// Figure out FOV stuff after the frame is over
 	void LateUpdate () 
 	{
-		if(cachedPlayerSpot != player.transform.position)
+		if(cachedPlayerSpot != player.transform.position && !R_Player.self.isMoving)
 		{
 			cachedPlayerSpot = player.transform.position;
 			renderer.enabled = !(Vector2.Distance(player.transform.position, transform.position) < seeDist);
