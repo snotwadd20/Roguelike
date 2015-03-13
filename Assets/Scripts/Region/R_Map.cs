@@ -66,13 +66,19 @@ public class R_Map : MonoBehaviour
     public int[,] tiles = null;
     public int[,] corners = null;
 
+	public int mapLevel = 0;
+	private int[] mapSeeds = null;
+	public const int MAX_LEVELS = 20;
 
+	public List<GameObject> allCreatedObjects = null;
 
     public void initializeLists()
     {
-        //-------------------------------
+		//-------------------------------
         //LISTS<T>
         //-------------------------------
+		allCreatedObjects = new List<GameObject>();
+
         //-------------------------------
         //LINKS[] - SIZED ARRAYS
         //-------------------------------
@@ -112,6 +118,20 @@ public class R_Map : MonoBehaviour
                 corners[x,y] = 0;
             }//for
         }//for
+
+		//-------------------------------
+		//MAP SEEDS
+		//-------------------------------
+
+		if(mapSeeds == null || mapSeeds.Length == 0)
+		{
+			mapSeeds = new int[MAX_LEVELS];
+
+			for(int i=0; i < mapSeeds.Length; i++)
+			{
+				mapSeeds[i] = r.getIntInRange(0,1234567890);
+			}//for
+		}//for
     }//initializeLists
 
     //********************************
@@ -119,17 +139,21 @@ public class R_Map : MonoBehaviour
     //********************************
     void OnEnable () 
     {
-        if(self == null)
-            self = this;
+		if(self == null)
+			self = this;
 
-        if(!useSeed)
-        {
-            seed = (int) DateTime.Now.Ticks % 1234567890;
-        }//if
+		if(!useSeed)
+		{
+			seed = (int) DateTime.Now.Ticks % 1234567890;
+		}//if
 
-        r = new RandomSeed(seed);
+		//Set up the initial seed that will make all the mapSeeds
+		r = new RandomSeed(seed);
+		initializeLists();
 
-        initializeLists();
+		//Now set up a new generator using the correct mapLevel seed
+		r.setSeed(mapSeeds[mapLevel]);
+
         generateMaze();
         startPos = new SerializedPoint(r.getIntInRange(0, linksWidth-1),r.getIntInRange(0, linksHeight-1));
         floodMaze(-1, startPos);
@@ -143,6 +167,20 @@ public class R_Map : MonoBehaviour
         //DEBUG
         print(ToString());
     }//Awake
+
+	void OnDisable()
+	{
+		links = null;
+		floodVals = null;
+		tiles = null;
+		corners = null;
+
+		for(int i=0; i < allCreatedObjects.Count; i++)
+		{
+			Destroy(allCreatedObjects[i]);
+		}//for
+		GC.Collect();
+	}//OnDisable
 
     void Update()
     {
@@ -739,6 +777,8 @@ public class R_Map : MonoBehaviour
 
 					if(isCollidable)
 						spt.AddComponent<BoxCollider2D>();
+
+					allCreatedObjects.Add(spt);
                 }//if
             }//for
         }//for
@@ -749,6 +789,8 @@ public class R_Map : MonoBehaviour
         GameObject backdrop = t.makeObject(width, height, Vector3.zero, Vector2.one, TextureWrapMode.Repeat);
         backdrop.transform.position = transform.position + Vector3.forward + new Vector3(width/2, height/2);
         backdrop.transform.parent = transform;
+
+		allCreatedObjects.Add(backdrop);
     }//toTiles
 
     //********************************
@@ -756,7 +798,7 @@ public class R_Map : MonoBehaviour
     //********************************
     public override string ToString ()
     {
-        string str = "---[start:"+startPos+"]------[end:" + endPos + "]------[seed:" + seed + "]------\n";
+        string str = "---[start:"+startPos+"]------[end:" + endPos + "]------[seed:" + seed + "] [mapSeed:" + mapSeeds[mapLevel] +" => L:"+ mapLevel + "]------\n";
         for(int y=height-1; y >= 0; y--)
         {
             for(int x=0; x < width; x++)
