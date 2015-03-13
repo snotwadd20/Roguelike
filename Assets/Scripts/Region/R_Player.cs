@@ -84,7 +84,13 @@ public class R_Player : MonoBehaviour
         GetComponent<Rigidbody2D>().isKinematic = true;
         GetComponent<Rigidbody2D>().gravityScale = 0;
 
-		SerializedPoint spot = map.startPos;
+		SerializedPoint spot;
+
+		if(R_Map.LastLevelVisited < R_Map.Level)
+			spot = map.startPos;
+		else
+			spot = map.endPos;
+
         transform.position = spot;
 
 		justMoved = false;

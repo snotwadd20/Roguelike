@@ -67,6 +67,8 @@ public class R_Map : MonoBehaviour
     public int[,] corners = null;
 
 	public int mapLevel = 0;
+	private int lastLevelVisited = -1;
+
 	private int[] mapSeeds = null;
 	public const int MAX_LEVELS = 20;
 
@@ -76,7 +78,15 @@ public class R_Map : MonoBehaviour
 	{
 		get
 		{
-			return R_Map.self.mapLevel;
+			return self.mapLevel;
+		}//get
+	}//Level
+
+	public static int LastLevelVisited
+	{
+		get
+		{
+			return self.lastLevelVisited;
 		}//get
 	}//Level
 
@@ -189,6 +199,17 @@ public class R_Map : MonoBehaviour
 		
 		//DEBUG
 		print(ToString());
+
+		if(Level > 0 || LastLevelVisited > 0)
+		{
+			SerializedPoint spot;
+			if(LastLevelVisited <= Level)
+				spot = startPos;
+			else
+				spot = endPos;
+
+			R_Player.self.transform.position = spot;
+		}//if
 	}//InitAll
 
 	void CleanUp()
@@ -208,17 +229,19 @@ public class R_Map : MonoBehaviour
 
 	public static int loadNextLevel()
 	{
-		R_Map.self.mapLevel++;
-		R_Map.self.CleanUp();
-		R_Map.self.InitAll();
+		self.lastLevelVisited = Level;
+		self.mapLevel++;
+		self.CleanUp();
+		self.InitAll();
 		return Level;
 	}//loadNextLevel
 
 	public static int loadPrevLevel()
 	{
-		R_Map.self.mapLevel--;
-		R_Map.self.CleanUp();
-		R_Map.self.InitAll();
+		self.lastLevelVisited = Level;
+		self.mapLevel--;
+		self.CleanUp();
+		self.InitAll();
 		return Level;
 	}//lastLevel
 
@@ -325,9 +348,11 @@ public class R_Map : MonoBehaviour
                 if(y == 0 || x == 0 || y == height-1 || x == width-1) //Edge
                 {
                 }//if
-				else if(floodVals[x,y] > bestCellValue - 3 && tiles[x,y] != WALL_TILE)
+				else 
 				{
-					possibleCells.Add(new SerializedPoint(x,y));
+					SerializedPoint spot = new SerializedPoint(x,y);
+					if(floodVals[x,y] > bestCellValue - 3 && tiles[x,y] != WALL_TILE && spot != startPos)
+						possibleCells.Add(spot);
 				}//if
             }//for
         }//for
