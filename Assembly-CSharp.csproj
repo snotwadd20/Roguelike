@@ -95,6 +95,7 @@
      <Compile Include="Assets\Scripts\Utility\Deck.cs" />
      <Compile Include="Assets\Scripts\Utility\HiveMind.cs" />
      <Compile Include="Assets\Scripts\Utility\RandomSeed.cs" />
+     <Compile Include="Assets\Scripts\Utility\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\Utility\SerializedPoint.cs" />
      <Compile Include="Assets\Scripts\Utility\Texturizer.cs" />
      <Compile Include="Assets\Scripts\Utility\TimerCallback.cs" />
