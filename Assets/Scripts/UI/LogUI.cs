@@ -7,7 +7,6 @@ public class LogUI : MonoBehaviour
 	public Text prefab = null;
 	public ScrollRect scrollRect = null;
 	public Transform contentPanel = null;
-	public Scrollbar scrollBar = null;
 
 	public static LogUI self = null;
 	// Use this for initialization
@@ -24,7 +23,6 @@ public class LogUI : MonoBehaviour
 		txt.transform.SetParent(self.contentPanel, true);
 		txt.gameObject.SetActive(true);
 		txt.gameObject.AddComponent<FadeScrollTextUI>();
-		self.scrollBar.value = 0;
 		Canvas.ForceUpdateCanvases();
 		self.scrollRect.verticalNormalizedPosition = 0;
 		Canvas.ForceUpdateCanvases();

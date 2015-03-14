@@ -99,6 +99,7 @@
      <Compile Include="Assets\Scripts\Utility\Texturizer.cs" />
      <Compile Include="Assets\Scripts\Utility\TimerCallback.cs" />
      <Compile Include="Assets\Scripts\Utility\TurnManager.cs" />
+     <Compile Include="Assets\Scripts\XPManager.cs" />
      <None Include="Assets\Resources\Effects\Shaders\Add_Alpha8.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

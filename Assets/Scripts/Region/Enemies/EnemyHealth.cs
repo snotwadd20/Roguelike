@@ -138,6 +138,8 @@ public class EnemyHealth : MonoBehaviour
 
 		spawnLoot();
 
+		XPManager.AddAdjustedXP(R_Map.self.mapLevel);
+
         Destroy(this.gameObject, 1.0f); //Destroy the enemy after 2 seconds
     }//die
 
