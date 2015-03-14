@@ -16,20 +16,29 @@ public class FadeScrollTextUI : MonoBehaviour
 
 		timer = 0;
 	}//Start
-	
+
+	private int skipFrames = 10;
+	private int frameCounter = 0;
 	// Update is called once per frame
 	void Update () 
 	{
 		timer += Time.deltaTime;
-		Color color = textObject.color;
-		color.a = Mathf.Lerp(1,0, timer / timeToZero);
-		textObject.color = color;
 
-		if(color.a == 0)
+		if(frameCounter < skipFrames)
+			frameCounter++;
+		else
 		{
-			Canvas.ForceUpdateCanvases();
-			Destroy(gameObject);
-			Canvas.ForceUpdateCanvases();
-		}//if
+			frameCounter = 0;
+			Color color = textObject.color;
+			color.a = Mathf.Lerp(1,0, timer / timeToZero);
+			textObject.color = color;
+
+			if(color.a == 0)
+			{
+				Canvas.ForceUpdateCanvases();
+				LogUI.RePool(textObject);
+				Canvas.ForceUpdateCanvases();
+			}//if
+		}//else
 	}//Update
 }//FadeScrollTextUI

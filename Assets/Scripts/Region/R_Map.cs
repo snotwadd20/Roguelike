@@ -854,8 +854,8 @@ public class R_Map : MonoBehaviour
         t.loadAutoTile(mountains);
         t.loadAutoTile(ground);
         autoTileWalls();
-        Color groundColor = UColor.ChangeBrightness(Color.green, 0.7f);
-        groundColor = UColor.ChangeSaturation(groundColor, 0.6f);
+        Color groundColor = Color.white;//UColor.ChangeBrightness(Color.white, 0.7f);
+        //groundColor = UColor.ChangeSaturation(groundColor, 0.6f);
 
         for(int y=height-1; y >= 0; y--)
         {
