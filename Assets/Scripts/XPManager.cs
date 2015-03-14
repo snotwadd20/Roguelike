@@ -52,6 +52,10 @@ public class XPManager : MonoBehaviour
 			ActLog.print("You're now level " + CurrentPlayerLevel + "!");
 			ActLog.print("XP to next level: " + Mathf.CeilToInt(baseXPToLevel * (1.2f*CurrentPlayerLevel)));
 			self._currentXP = 0;
+
+			PlayerHealth ph = R_Player.self.gameObject.GetComponent<PlayerHealth>();
+			ph.addToMaxHealth(CurrentPlayerLevel * 1.2f * 10);
+			ActLog.print("You got +" + (CurrentPlayerLevel * 1.2f * 10) + " MaxHP!");
 		}//if
 	}//
 
