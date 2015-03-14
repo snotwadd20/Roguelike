@@ -1,11 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\XPManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\YesNoUI.cs">
     <Files>
-      <File FileName="Assets\Scripts\XPManager.cs" Line="58" Column="27" />
-      <File FileName="Assets\Scripts\Region\Enemies\EnemyHealth.cs" Line="141" Column="48" />
-      <File FileName="Assets\Scripts\UI\LogUI.cs" Line="10" Column="1" />
-      <File FileName="Assets\Scripts\Region\Enemies\MonsterMaker.cs" Line="77" Column="60" />
+      <File FileName="Assets\Scripts\PlayerHealth.cs" Line="28" Column="22" />
+      <File FileName="Assets\Scripts\Utility\SceneLoader.cs" Line="89" Column="1" />
+      <File FileName="Assets\Scripts\Region\Enemies\MonsterMaker.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Region\FOVSquare.cs" Line="15" Column="10" />
+      <File FileName="Assets\Scripts\UI\YesNoUI.cs" Line="60" Column="1" />
+      <File FileName="Assets\Scripts\Region\R_Map.cs" Line="164" Column="7" />
+      <File FileName="Assets\Scripts\Region\R_FOV.cs" Line="27" Column="1" />
+      <File FileName="Assets\Scripts\Region\R_Player.cs" Line="74" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

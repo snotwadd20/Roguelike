@@ -12,15 +12,14 @@ public class SceneLoader : MonoBehaviour
     public LoadType loadCondition = LoadType.manual;
     public GameObject lynchpin;
 
-	private SceneLoader _self = null;
-	public SceneLoader self
+	private static SceneLoader _self = null;
+	public static SceneLoader self
 	{
 		get
 		{
 			if(_self == null)
 			{
 				_self = new GameObject("SceneLoader").AddComponent<SceneLoader>();
-				DontDestroyOnLoad(_self);
 			}//if
 
 			return _self;
@@ -64,8 +63,37 @@ public class SceneLoader : MonoBehaviour
 
     public void Load()
     {
-        Application.LoadLevel (sceneNameToLoad);
+		Load(sceneNameToLoad);
     }//Load
 
+	public void Quit()
+	{
+		YesNoUI.self.gameObject.SetActive(false);
+		Application.Quit();
+		print ("QUIT");
+	}//Quit
+
+	public void Cancel()
+	{
+		YesNoUI.self.gameObject.SetActive(false);
+	}//cancel
+
+	public void Load(string toLoad)
+	{
+		if(toLoad == "QuitGame")
+		{
+			YesNoUI.self.header.text = "QUIT GAME?";
+			YesNoUI.self.yesButtonText.text = "Yes!";
+			YesNoUI.self.noButtonText.text = "HELL NO!";
+			YesNoUI.self.RegisterCallbacks(Quit, Cancel);
+
+			YesNoUI.self.gameObject.SetActive(true);
+		}
+		else
+		{
+			Application.LoadLevel (toLoad);
+		}//else
+	}//Load
+    
     public enum LoadType {onEnable, onAwake, onStart, onTriggerVolume, manual};
 }

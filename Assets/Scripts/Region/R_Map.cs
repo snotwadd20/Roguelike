@@ -158,12 +158,22 @@ public class R_Map : MonoBehaviour
     void OnEnable () 
     {
 		InitAll ();
+
+
     }//Awake
 
 	void OnDisable()
 	{
 		CleanUp();
 	}//OnDisable
+
+	void Update()
+	{
+		if(Input.GetKeyUp(KeyCode.Escape))
+		{
+			SceneLoader.self.Load("QuitGame");
+		}//if
+	}//Update
 
 	//********************************
 	// CONTENT PLACEMENT FUNCTIONS

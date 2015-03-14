@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
 
     private bool isInvincible = false;
 
-	public int lives = 3;
+	public int lives = 1;
 
     //private PlayerMovement pm = null;
     void Awake () 
@@ -159,16 +159,17 @@ public class PlayerHealth : MonoBehaviour
         {
             c.isTrigger = true;
         }//foreach
-		PopupText.Create("!!DIED!!!" , transform.position + Vector3.up * 0.75f, Color.black);
 
         Invoke("removePlayer",1.0f);
+
+
         //Destroy(this.gameObject, 1.0f); //Destroy the enemy after 2 seconds
     }//die
 
     private void removePlayer()
     {
         gameObject.SetActive(false);
-
+		SceneLoader.self.Load("GameOver");
     }//removePlayer
     
     private void flicker(bool doFlicker = true, int interval = 10)

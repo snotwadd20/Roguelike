@@ -66,12 +66,12 @@ public class R_Player : MonoBehaviour
                 map = mapObj.GetComponent<R_Map>();
                 if(map == null)
                 {
-                    print ("Can't find OWMap Object in level tagged 'Map'");
+                    print ("Can't find R_Map Object in level tagged 'Map'");
                 }//if
             }
             else
             {
-                print ("Can't find OWMap Object in level tagged 'Map'");
+                print ("Can't find R_Map Object in level tagged 'Map'");
             }//else
         }//map
         
