@@ -109,6 +109,15 @@ public class R_Player : MonoBehaviour
 
 		ignoreRaycastLayer = LayerMask.NameToLayer("Ignore Raycast");
 
+		ActLog.print("<color=green>[I] Open Inventory.</color>");
+		ActLog.print("<color=green>[C] Open Gem Equipper.</color>");
+		ActLog.print("<color=green>[G] Get item from floor.</color>");
+		ActLog.print("<color=green>[S] Use the stairs.</color>");
+		ActLog.print("<color=green>[UDRL] or [NUMPAD] to move.</color>");
+		ActLog.print("<color=cyan>Bump into enemies to attack them!</color>");
+		ActLog.print("<color=cyan>Use scrolls for ranged attacks!</color>");
+		ActLog.print("<color=cyan>Potions will heal you!</color>");
+
     }//Awake
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -207,7 +216,7 @@ public class R_Player : MonoBehaviour
                 {
 					justAttacked = true;
 
-					TimerCallback.createTimer(0.3f, clearAttackFlag, "Stop Moving timer", false);
+					TimerCallback.createTimer(0.35f, clearAttackFlag, "Stop Moving timer", false);
 					//If going in that direction would hit an enemy, do an attack instead
 					Vector3 rayPos = transform.position + (Vector3)ptInDir(0,0,dir).normalized;
 					RaycastHit2D hit = raycastTo(rayPos - transform.position,1,"Enemies");

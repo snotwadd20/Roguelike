@@ -158,8 +158,6 @@ public class R_Map : MonoBehaviour
     void OnEnable () 
     {
 		InitAll ();
-
-
     }//Awake
 
 	void OnDisable()

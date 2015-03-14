@@ -42,7 +42,7 @@ public class XPManager : MonoBehaviour
 
 	public static float AddXP(float xpToAdd)
 	{
-		ActLog.print("You got " + xpToAdd + " XP!");
+		ActLog.print("You got <color=lightblue>" + xpToAdd + " XP</color>!");
 		self._currentXP += xpToAdd;
 
 		checkForLevelUp();
@@ -55,14 +55,14 @@ public class XPManager : MonoBehaviour
 		if(self._currentXP >= (baseXPToLevel * (1.2f*CurrentPlayerLevel)))
 		{
 			CurrentPlayerLevel++;
-			ActLog.print("You levelled up!");
-			ActLog.print("You're now level " + CurrentPlayerLevel + "!");
-			ActLog.print("XP to next level: " + Mathf.CeilToInt(baseXPToLevel * (1.2f*CurrentPlayerLevel)));
+			ActLog.print("<color=yellow>You levelled up!</color>");
+			ActLog.print("<color=yellow>You're now level " + CurrentPlayerLevel + "!</color>");
+			ActLog.print("<color=lightblue>XP to next level: " + Mathf.CeilToInt(baseXPToLevel * (1.2f*CurrentPlayerLevel)) + "</color>");
 			self._currentXP = 0;
 
 			PlayerHealth ph = R_Player.self.gameObject.GetComponent<PlayerHealth>();
 			ph.addToMaxHealth(CurrentPlayerLevel * 1.2f * 10);
-			ActLog.print("You got +" + (CurrentPlayerLevel * 1.2f * 10) + " MaxHP!");
+			ActLog.print("<color=orange>You got +" + (CurrentPlayerLevel * 1.2f * 10) + " MaxHP!</color>");
 		}//if
 	}//
 

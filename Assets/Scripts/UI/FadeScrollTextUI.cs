@@ -9,7 +9,7 @@ public class FadeScrollTextUI : MonoBehaviour
 
 	public float timer = 0;
 	// Use this for initialization
-	void Start () 
+	void OnEnable () 
 	{
 		if(textObject == null)
 			textObject = GetComponent<Text>();

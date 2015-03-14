@@ -49,6 +49,8 @@ public class LogUI : MonoBehaviour
 	public static void RePool(Text text)
 	{
 		text.gameObject.SetActive(false);
+		FadeScrollTextUI fstUI= text.GetComponent<FadeScrollTextUI>();
+		fstUI.timer = 0;
 	}//rePool
 	
 	public static List<Text> pool = null;

@@ -51,8 +51,10 @@ public class YesNoUI : MonoBehaviour
 			gameObject.SetActive(false);
 			oneanddone = true;
 		}//if
-
-		Time.timeScale = 0;
+		else
+		{
+			Time.timeScale = 0;
+		}//else
 	}//OnEnable
 
 	void OnDisable()

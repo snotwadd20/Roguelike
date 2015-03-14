@@ -53,7 +53,7 @@ public class Container : MonoBehaviour
 	{
 		if(isInteractable)
 		{
-			ActLog.print("Press G to loot the " + name);
+			ActLog.print("<color=green>Press G to loot the " + name + "</color>");
 		}//if
 	}//OnTriggerEnter2D
 	
@@ -104,7 +104,7 @@ public class Container : MonoBehaviour
 	{
 		foreach(KeyValuePair<string, Pickable> thing in container.contents)
 		{
-			ActLog.print("You got a " + thing.Value.name + "!");
+			ActLog.print("You got a <color=cyan>" + thing.Value.name + "</color>!");
 			Add(thing.Value);
 		}//foreach
 	}//AddContainer

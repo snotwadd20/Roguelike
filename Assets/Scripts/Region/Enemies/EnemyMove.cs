@@ -34,7 +34,7 @@ public class EnemyMove : MonoBehaviour
 
 	private int ignoreRaycastLayer = 0;
 
-
+	public bool isDead = false;
 	// Use this for initialization
 	void Start () 
 	{
@@ -61,6 +61,9 @@ public class EnemyMove : MonoBehaviour
 	//Thing that happens ever turn (deciding to move, attack, etc)
 	void OnTurn(int turnNumber)
 	{
+		if(isDead)
+			return;
+
 		if(state == WANDER)
 			wander ();
 		else if (state == CHASE)
@@ -85,9 +88,9 @@ public class EnemyMove : MonoBehaviour
 		}//if
 		else
 		{
-			if(wasOffScreen && Vector2.Distance(transform.position, R_Player.self.transform.position ) <= FOVSquare.seeDist + 1)
+			if(wasOffScreen && Vector2.Distance(transform.position, R_Player.self.transform.position ) <= FOVSquare.seeDist - 2.5f)
 			{
-				ActLog.print("A monster appears!");
+				ActLog.print("<color=red>A monster appears!</color>");
 
 				wasOffScreen = false;
 				if(state == WANDER)
@@ -99,7 +102,7 @@ public class EnemyMove : MonoBehaviour
 	public void doAttack()
 	{
 		CameraShake.Shake(Camera.main, 0.25f, 0.4f, 1.0f, Vector2.zero) ;
-		ActLog.print("Monster attacked player for " + damage + " damage!");
+		ActLog.print("<color=red>Monster attacked player for " + damage + " damage!</color>");
 		PlayerHealth ph = R_Player.self.GetComponent<PlayerHealth>();
 		ph.dealDamage(damage, transform.position);
 	}//doAttack
@@ -152,11 +155,17 @@ public class EnemyMove : MonoBehaviour
 
 		}//else
 
+		RaycastHit2D hit = raycastTo(destination, 1, "Enemy");
+		if(hit)
+			dirToGo = 0;
+
 		if(dirToGo != 0)
 		{
 			lastMoveDir = dirToGo;
 			destination += R_Map.self.findNeighbor(0,0, dirToGo);
 		}//if
+
+
 
 	}//chase
 

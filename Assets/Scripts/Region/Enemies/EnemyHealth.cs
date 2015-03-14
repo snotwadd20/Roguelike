@@ -140,6 +140,10 @@ public class EnemyHealth : MonoBehaviour
 
 		XPManager.AddAdjustedXP(R_Map.self.mapLevel);
 
+		EnemyMove em = GetComponent<EnemyMove>();
+		em.enabled = false;
+		em.isDead = true;
+
         Destroy(this.gameObject, 1.0f); //Destroy the enemy after 2 seconds
     }//die
 
