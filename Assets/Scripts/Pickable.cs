@@ -23,14 +23,14 @@ public class Pickable : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		CircleCollider2D cc2d = gameObject.AddComponent<CircleCollider2D>();
-		cc2d.isTrigger = true;
-		cc2d.radius *= 1.25f;
+		BoxCollider2D bc2d = gameObject.AddComponent<BoxCollider2D>();
+		bc2d.isTrigger = true;
+
 	}//Start
 	
 	public void OnTriggerEnter2D()
 	{
-		ActLog.print("press P to pick up");
+		ActLog.print("Press G to get the " + name);
 	}//OnTriggerEnter2D
 
 	public void pick(ref Container container)

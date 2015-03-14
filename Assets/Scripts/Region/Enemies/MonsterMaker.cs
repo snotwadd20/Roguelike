@@ -36,7 +36,7 @@ public class MonsterMaker
 				em.damage = r.getIntInRange(3,10) * 2;
 
 				eh = monsterPrefab.AddComponent<EnemyHealth>();
-				eh.startingHealth = r.getIntInRange(1,10) * 10;
+				eh.startingHealth = r.getIntInRange(1,5) * 10;
 
 				monsters.Add(monsterPrefab);
 			}//for

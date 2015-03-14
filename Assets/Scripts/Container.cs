@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Container : MonoBehaviour 
 {
 	public Dictionary<string, Pickable> contents = null;
-	public new string name = "Container";
+	public new string name = "<Container>";
 
 	public ContainerUI currentGUI = null;
 
@@ -14,7 +14,6 @@ public class Container : MonoBehaviour
 	public bool isRandomlyFilled = true;
 
 	private bool keyPressed = false;
-	private static List<Pickable> prefabs = null;
 
 	private static RandomSeed r = null;
 	// Use this for initialization
@@ -43,45 +42,18 @@ public class Container : MonoBehaviour
 		if(!isRandomlyFilled)
 			return;
 
-		if(prefabs == null)
-			setupPrefabs();
-
 		for(int i=0; i < r.getIntInRange(2, 5); i++)
 		{
-			Pickable prefab = prefabs[r.getIntInRange(0, prefabs.Count-1)];
-			Pickable instance = Instantiate<GameObject>(prefab.gameObject).GetComponent<Pickable>();
-			instance.gameObject.SetActive(true);
-			instance.holdingContainer = this;
-			instance.count = 1;
-
-			//Do stuff for gem amounts here
-			//TODO
-
-			Add(instance);
+			Pickable loot = TreasureManager.SpawnLoot(Vector3.zero, this);
+			Add(loot);
 		}//for
 	}//fillRandomly
 
-	void setupPrefabs()
-	{
-		prefabs = new List<Pickable>();
-
-		prefabs.Add(Resources.Load<GameObject>("Objects/scrollFireball").GetComponent<Pickable>());
-		prefabs.Add(Resources.Load<GameObject>("Objects/scrollMagicMissile").GetComponent<Pickable>());
-		prefabs.Add(Resources.Load<GameObject>("Objects/healingPotion").GetComponent<Pickable>());
-		prefabs.Add(Resources.Load<GameObject>("Objects/gem").GetComponent<Pickable>());
-
-
-		foreach(Pickable prefab in prefabs)
-		{
-			prefab.gameObject.SetActive(false);
-		}//prefab
-	}//setupPrefabs
-	
 	void OnTriggerEnter2D(Collider2D coll)
 	{
 		if(isInteractable)
 		{
-			ActLog.print("Press P to loot the " + name);
+			ActLog.print("Press L to loot the " + name);
 		}//if
 	}//OnTriggerEnter2D
 	
@@ -100,7 +72,7 @@ public class Container : MonoBehaviour
 	void Update () 
 	{
 		if(isInteractable)
-			keyPressed = Input.GetKeyDown(KeyCode.P);
+			keyPressed = Input.GetKeyDown(KeyCode.L);
 	}//Update
 
 	public void showUI()

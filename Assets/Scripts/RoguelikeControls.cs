@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RoguelikeControls : MonoBehaviour 
 {
-	private string alphabet = "abcdefghijklmnoqrtuvwxyz1234567890"; //minus p (pick) and (s) stairs
+	private string alphabet = "abcdefhijklmnopqrtuvwxyz1234567890"; //minus p (pick) and (s) stairs
 
 	public EquipUI equipMenu = null;
 

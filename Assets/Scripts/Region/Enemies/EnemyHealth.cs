@@ -136,8 +136,15 @@ public class EnemyHealth : MonoBehaviour
             c.isTrigger = true;
         }//foreach
 
+		spawnLoot();
+
         Destroy(this.gameObject, 1.0f); //Destroy the enemy after 2 seconds
     }//die
+
+	private void spawnLoot()
+	{
+		TreasureManager.SpawnLoot(transform.position, null);
+	}//spawnLoot
 
     private void flicker(bool doFlicker = true, int interval = 10)
     {

@@ -187,7 +187,7 @@ public class R_Map : MonoBehaviour
 			SerializedPoint pos = randomPointFromList(ref places);
 
 			if(Vector2.Distance(pos, startPos) >= 10)
-				allCreatedObjects.Add(TreasureManager.Spawn(pos));
+				allCreatedObjects.Add(TreasureManager.SpawnChest(pos));
 		}//while
 	}//placeChests
 
