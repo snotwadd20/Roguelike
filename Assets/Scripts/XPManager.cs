@@ -18,6 +18,13 @@ public class XPManager : MonoBehaviour
 		}//get
 	}//self
 
+	public static float XPToNextLevel
+	{
+		get
+		{
+			return Mathf.CeilToInt(baseXPToLevel * (1.2f*CurrentPlayerLevel));
+		}//get
+	}//
 	public static float CurrentXP
 	{
 		get

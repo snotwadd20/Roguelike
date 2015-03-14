@@ -44,6 +44,10 @@ public class R_Player : MonoBehaviour
 
 	public CharacterSheet stats = null;
 
+	private bool facingLeft = true;
+
+	private Animator myAnimator = null;
+
     public void Start()
     {
         if(self == null)
@@ -51,6 +55,9 @@ public class R_Player : MonoBehaviour
 
 		if(stats == null)
 			stats = GetComponent<CharacterSheet>();
+
+		if(myAnimator == null)
+			myAnimator = GetComponent<Animator>();
 
         if(t == null)
         {
@@ -176,14 +183,21 @@ public class R_Player : MonoBehaviour
                 input.x = 0;
             }//else
             
+
             if (input != Vector2.zero) 
             {
                 int dir = 0;
-                
-                if(input.x > 0)
+
+				if(input.x > 0)
+				{
                     dir = dir | R_Map.RIGHT;
+					facingLeft = false;
+				}
                 else if(input.x < 0)
+				{
                     dir = dir | R_Map.LEFT;
+					facingLeft = true;
+				}
                 else if(input.y < 0)
                     dir = dir | R_Map.DOWN;
                 else if(input.y > 0)
@@ -222,6 +236,14 @@ public class R_Player : MonoBehaviour
                 
             }//if
         }//if
+
+
+		myAnimator.SetFloat("horzSpeed", (isMoving || justAttacked)? 1 : 0);
+
+		if(facingLeft)
+			transform.localScale = new Vector3(1,1,1);
+		else
+			transform.localScale = new Vector3(-1,1,1);
     }//Update
 
 
@@ -301,8 +323,7 @@ public class R_Player : MonoBehaviour
             transform.position = Vector3.Lerp(startPosition, endPosition, time);
             yield return null;
         }//while
-        
-        isMoving = false;
+		isMoving = false;
         yield return 0;
     }//move
 

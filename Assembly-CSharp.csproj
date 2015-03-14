@@ -92,6 +92,7 @@
      <Compile Include="Assets\Scripts\UI\PopupText.cs" />
      <Compile Include="Assets\Scripts\UI\UIWindowBase.cs" />
      <Compile Include="Assets\Scripts\UI\UpdateLivesUI.cs" />
+     <Compile Include="Assets\Scripts\UI\UpdateXPUI.cs" />
      <Compile Include="Assets\Scripts\UI\YesNoUI.cs" />
      <Compile Include="Assets\Scripts\Utility\Deck.cs" />
      <Compile Include="Assets\Scripts\Utility\HiveMind.cs" />
