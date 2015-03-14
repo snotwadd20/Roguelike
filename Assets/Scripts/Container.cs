@@ -53,7 +53,7 @@ public class Container : MonoBehaviour
 	{
 		if(isInteractable)
 		{
-			ActLog.print("Press L to loot the " + name);
+			ActLog.print("Press G to loot the " + name);
 		}//if
 	}//OnTriggerEnter2D
 	
@@ -67,12 +67,12 @@ public class Container : MonoBehaviour
 			TurnManager.NextTurn();
 		}//if
 	}//if
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
 		if(isInteractable)
-			keyPressed = Input.GetKeyDown(KeyCode.L);
+			keyPressed = Input.GetKeyDown(KeyCode.G);
 	}//Update
 
 	public void showUI()
