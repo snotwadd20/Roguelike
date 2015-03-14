@@ -28,10 +28,11 @@ public class FOVSquare : MonoBehaviour
 	// Figure out FOV stuff after the frame is over
 	void LateUpdate () 
 	{
+		Color transBlack = Color.clear;
 		if(cachedPlayerSpot != player.transform.position && !R_Player.self.isMoving)
 		{
 			cachedPlayerSpot = player.transform.position;
-			_renderer.enabled = !(Vector2.Distance(player.transform.position, transform.position) < seeDist);
+			//_renderer.enabled = !(Vector2.Distance(player.transform.position, transform.position) < seeDist);
 
 			if(_renderer.enabled)
 			{
@@ -40,12 +41,13 @@ public class FOVSquare : MonoBehaviour
 				{
 					//Off the map is solid black
 					_renderer.enabled = true;
-					_renderer.material.color = Color.black;
+
+					_renderer.material.color = Color.Lerp(transBlack, Color.black, Vector2.Distance(transform.position, R_Player.self.transform.position) / seeDist);
 				}//if
 				else if(state == HAS_SEEN)
 				{
 					_renderer.enabled = true;
-					_renderer.material.color = new Color(1,1,0,0.75f);
+					_renderer.material.color = Color.Lerp(transBlack, Color.black, Vector2.Distance(transform.position, R_Player.self.transform.position) / seeDist);
 				}//if
 			}//if
 			else
