@@ -12,9 +12,14 @@ public class GemFilteredContainer : MonoBehaviour
 	public Button buttonPrefab = null;
 	public Transform contentPanel = null;
 	public ScrollRect scrollRect = null;
-	
-	void Start () 
+
+	private List<GameObject> allContentObjects = null;
+	void OnEnable () 
 	{
+		if(allContentObjects == null || allContentObjects.Count <= 0)
+		{
+			allContentObjects = new List<GameObject>();
+		}//if
 		foreach(KeyValuePair<string, Pickable> item in inventory.contents)
 		{
 			Pickable pick = item.Value;
@@ -22,7 +27,6 @@ public class GemFilteredContainer : MonoBehaviour
 
 			if(gemPick != null)
 			{
-				// do something with entry.Value or entry.Key
 				GameObject button = ((GameObject)Instantiate(buttonPrefab.gameObject));
 				InventoryGemButton igb = button.GetComponent<InventoryGemButton>();
 				igb.gem = gemPick.gem;
@@ -30,6 +34,7 @@ public class GemFilteredContainer : MonoBehaviour
 				igb.transform.SetParent(contentPanel);
 				
 				igb.transform.localScale = Vector3.one;
+				allContentObjects.Add(igb.gameObject);
 			}//if
 		}//foreach
 
@@ -37,4 +42,19 @@ public class GemFilteredContainer : MonoBehaviour
 		scrollRect.verticalNormalizedPosition = 0;
 		Canvas.ForceUpdateCanvases();
 	}//OnEnable
+
+	void OnDisable()
+	{
+		CleanUp();
+	}//OnDisable
+
+	public void CleanUp()
+	{
+		//Flush the inventory so it'l get re-done
+		for(int i=0; i < allContentObjects.Count; i++)
+		{
+			Destroy(allContentObjects[i]);
+		}//for
+		allContentObjects = null;
+	}//CleanUp
 }

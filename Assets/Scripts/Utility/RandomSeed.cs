@@ -69,10 +69,9 @@ public class RandomSeed
 	
 	public bool percentageChance(float percent)
 	{
-		if(percent>=getFloatInRange(1,101))
-		{
+		if(getFloatInRange(0,99) <= percent)
 			return true;
-		}
+
 		return false;
 	}//percentageChance
 

@@ -83,9 +83,7 @@ public class EquipUI : MonoBehaviour
 
 	public void Close()
 	{
-		//Time.timeScale = 1;
 		gameObject.SetActive(false);
-		//gameObject.SetActive(false);
 	}//Close
 
 	private void doButtonSelection(MonoBehaviour selected)

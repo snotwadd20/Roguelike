@@ -177,8 +177,19 @@ public class R_Map : MonoBehaviour
 
 			if(Vector2.Distance(pos, startPos) >= 10)
 				allCreatedObjects.Add(MonsterMaker.Spawn(pos));
-		}//while*/
+		}//while
 	}//placeMonsters
+
+	public void placeTreasure(List<SerializedPoint> places)
+	{
+		while(places.Count > 0)
+		{
+			SerializedPoint pos = randomPointFromList(ref places);
+
+			if(Vector2.Distance(pos, startPos) >= 10)
+				allCreatedObjects.Add(TreasureManager.Spawn(pos));
+		}//while
+	}//placeChests
 
 	//********************************
 	// OTHER IMPORTANT FUNCTIONS
@@ -203,6 +214,8 @@ public class R_Map : MonoBehaviour
 		r.setSeed(mapSeeds[mapLevel]);
 		
 		generateMaze();
+		removeDeadEnds();
+
 		startPos = new SerializedPoint(r.getIntInRange(0, linksWidth-1),r.getIntInRange(0, linksHeight-1));
 		floodMaze(-1, startPos);
 		
@@ -214,6 +227,9 @@ public class R_Map : MonoBehaviour
 		ToTiles();
 
 		placeMonsters(monsterPlaces);
+
+		List<SerializedPoint> chestPositions = findTreasureSpots();
+		placeTreasure(chestPositions);
 
 		//DEBUG
 		print(ToString());
@@ -450,12 +466,31 @@ public class R_Map : MonoBehaviour
                 links[unvisitedNeighbors[i].ix, unvisitedNeighbors[i].iy] = IN_FRONTIERS;
             }//for
         }//while
-
-		removeDeadEnds();
     }//generateMaze
 
+	public List<SerializedPoint> findTreasureSpots()
+	{
+		List<SerializedPoint> chestPositions = new List<SerializedPoint>();
+
+		for(int y = 0; y < height; y++)
+		{
+			for(int x = 0; x < width; x++)
+			{
+				if(x > 0 && y > 0 && x < width -1 && y < height-1 && //not on an edge
+				   tiles[x,y] != WALL_TILE //Not on a wall
+				   && Vector2.Distance(startPos, new Vector2(x,y)) > 10 && //Not close to the start
+				   r.percentageChance(1))  //with a random chance
+				{
+					chestPositions.Add(new SerializedPoint(x,y));
+				}//if
+			}//for
+		}//for
+
+		return chestPositions;
+	}//findTreasureSpots
 	public void removeDeadEnds()
 	{
+		//List<SerializedPoint> list = new List<SerializedPoint>();
 		for(int y = 0; y < linksHeight; y++)
 		{
 			for(int x = 0; x < linksWidth; x++)
@@ -478,7 +513,8 @@ public class R_Map : MonoBehaviour
 
 					if(neighbor != null)
 					{
-						linkNeighbors(new SerializedPoint(x,y), neighbor);
+						SerializedPoint thisCell = new SerializedPoint(x,y);
+						linkNeighbors(thisCell, neighbor);
 					}//if
 				}//if
 			}//for

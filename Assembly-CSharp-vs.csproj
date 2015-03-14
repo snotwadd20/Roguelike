@@ -79,6 +79,7 @@
      <Compile Include="Assets\Scripts\Spells\Missile.cs" />
      <Compile Include="Assets\Scripts\Spells\Spells.cs" />
      <Compile Include="Assets\Scripts\Spells\Targeter.cs" />
+     <Compile Include="Assets\Scripts\TreasureManager.cs" />
      <Compile Include="Assets\Scripts\UI\ContainerUI.cs" />
      <Compile Include="Assets\Scripts\UI\Equip Screen\EquipUI.cs" />
      <Compile Include="Assets\Scripts\UI\Equip Screen\EquippedGemButton.cs" />
