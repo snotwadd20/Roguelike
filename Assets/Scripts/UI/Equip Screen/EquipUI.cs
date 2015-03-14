@@ -138,6 +138,8 @@ public class EquipUI : MonoBehaviour
 		Gem temp = gem1.gem;
 		gem1.gem = gem2.gem;
 		gem2.gem = temp;
+
+		TurnManager.NextTurn();
 	}//swapGems
 
 	private void swapGems(InventoryGemButton gem1, EquippedGemButton gem2)
@@ -156,5 +158,7 @@ public class EquipUI : MonoBehaviour
 			gem1.gem = gem2.gem;
 			gem2.gem = temp;
 		}//else
+
+		TurnManager.NextTurn();
 	}//swapGems
 }//EquipUI

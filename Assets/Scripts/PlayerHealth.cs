@@ -27,6 +27,8 @@ public class PlayerHealth : MonoBehaviour
 
 	public int lives = 1;
 
+	public CharacterSheet stats = null;
+
     //private PlayerMovement pm = null;
     void Awake () 
     {
@@ -38,6 +40,9 @@ public class PlayerHealth : MonoBehaviour
 	
 		if(mr)
 			startingMeshColor = mr.material.color;
+
+		if(stats == null)
+			stats = GetComponent<CharacterSheet>();
 	}//Awake
 
     public void makeInvincible(bool doIt = false)
@@ -76,7 +81,7 @@ public class PlayerHealth : MonoBehaviour
         if(isDead || isInvincible)
             return;
 
-        currentHealth -= damage;
+        currentHealth -= adjustDamage(damage);
 		PopupText.Create("-" + damage +  " HP" , transform.position + Vector3.up * 0.75f, Color.red);
 
         knockBack((Vector2)transform.position - damageLocation, 2000);
@@ -95,6 +100,18 @@ public class PlayerHealth : MonoBehaviour
             }//else
         }//if
     }//dealDamage
+
+	private float adjustDamage(float baseDamage)
+	{
+		if(stats.Defense > 0)
+		{
+			float DR = stats.Defense*3;
+			PopupText.Create(DR + " DR. [Def " + stats.Defense + "]", transform.position + Vector3.up * 0.45f, Color.green);
+			ActLog.print("<color=lightblue> [Def " + stats.Defense + "]</color>: Prevented " + DR + " damage!");
+		}//if
+
+		return Mathf.Max(Mathf.CeilToInt(baseDamage - stats.Defense*3), 1*R_Map.self.mapLevel);
+	}//
 
     private void makeHittable()
     {

@@ -48,6 +48,8 @@ public class R_Player : MonoBehaviour
 
 	private Animator myAnimator = null;
 
+	private static RandomSeed r = null;
+
     public void Start()
     {
         if(self == null)
@@ -64,6 +66,9 @@ public class R_Player : MonoBehaviour
             t = new Texturizer(Color.white, 32,32);
             t.setupTile(0);
         }//if
+
+		if(r == null)
+			r = new RandomSeed(R_Map.self.seed);
 
         if(map == null)
         {
@@ -226,9 +231,12 @@ public class R_Player : MonoBehaviour
 						EnemyHealth eh = hit.collider.gameObject.GetComponent<EnemyHealth>();
 						if(eh != null)
 						{
-							float mult = 2;
-							float damage = 1 + (mult * stats.Attack);
-							ActLog.print("Player did " + damage + " damage to enemy");
+							float mult = rollToAttack();
+							float extraDamage = (mult * stats.Attack);
+							float damage = XPManager.CurrentPlayerLevel + extraDamage;
+
+							ActLog.print("<color=orange>[Attack: " + stats.Attack + "]</color> Extra damage: " + extraDamage);
+							ActLog.print("Player did <color=red>" + damage + "</color> damage to " + eh.name);
 							eh.dealDamage(damage);
 							CameraShake.Shake(Camera.main, 0.25f, 0.4f, 1.0f, Vector2.zero) ;
 						}//if
@@ -242,7 +250,6 @@ public class R_Player : MonoBehaviour
                 }//if
                 else
                     Bump(dir);
-                
             }//if
         }//if
 
@@ -255,6 +262,37 @@ public class R_Player : MonoBehaviour
 			transform.localScale = new Vector3(-1,1,1);
     }//Update
 
+	public float rollToAttack()
+	{
+		//Return damage multiplier
+		float plusCritPerLuck = 2.0f;
+		float baseCrit = 10.0f + plusCritPerLuck * stats.Luck;
+		float baseHit = (100 - baseCrit) * (1.0f/3.0f);
+		//float baseMiss = 100 - baseCrit - baseHit;
+
+		if(stats.Luck > 0)
+		{
+			ActLog.print("<color=lime>[Luck: " + stats.Luck + "]</color>: +" + (plusCritPerLuck*stats.Luck) + " Damage Multiplier Chance.");
+		}//if
+
+		float roll = r.getIntInRange(1,100);
+		if(roll <= baseCrit)
+		{
+			ActLog.print("<color=lime>Critical Hit!!</color> 4x Damage!!");
+			return 4;
+		}//if
+		else if(roll <= baseHit)
+		{
+			ActLog.print("<color=lime>Nice Hit!</color> 2x Damage!");
+			return 2;
+		}//else if
+		else
+		{
+			ActLog.print("<color=lime>Ok Hit.</color> 1x Damage.");
+		}//else
+
+		return 1;
+	}//rollToAttack
 
     //Find a "neighbor" cell in a direction and return coordinates
     public Vector2 ptInDir(Vector2 loc, int dir)

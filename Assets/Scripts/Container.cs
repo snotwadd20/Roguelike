@@ -44,7 +44,7 @@ public class Container : MonoBehaviour
 
 		for(int i=0; i < r.getIntInRange(2, 5); i++)
 		{
-			Pickable loot = TreasureManager.SpawnLoot(Vector3.zero, this);
+			Pickable loot = TreasureManager.SpawnLoot(Vector3.zero, this, isInteractable);
 			Add(loot);
 		}//for
 	}//fillRandomly

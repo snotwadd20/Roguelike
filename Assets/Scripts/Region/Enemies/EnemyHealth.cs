@@ -28,6 +28,8 @@ public class EnemyHealth : MonoBehaviour
 
     public int level = 1;
 
+	public static RandomSeed r = null;
+
     void OnEnable () 
     {
         if(deathSound == null)
@@ -149,7 +151,19 @@ public class EnemyHealth : MonoBehaviour
 
 	private void spawnLoot()
 	{
-		TreasureManager.SpawnLoot(transform.position, null);
+		CharacterSheet stats = R_Player.self.GetComponent<CharacterSheet>();
+		int roll = r.getIntInRange(1,100);
+		
+		if(roll <= 20 + stats.Luck) //1/3 chance plus 1% per luck
+		{
+			if(stats.Luck > 0)
+			{
+				ActLog.print("<color=lime>[Luck: " + stats.Luck + "] +" + stats.Luck+ "%</color> loot drop chance");
+			}//if
+
+			Pickable loot = TreasureManager.SpawnLoot(transform.position, null);
+			ActLog.print("<color=red>" + gameObject.name + "</color> dropped a <color=cyan>" + loot.name + "</color>");
+		}//if
 	}//spawnLoot
 
     private void flicker(bool doFlicker = true, int interval = 10)
@@ -179,19 +193,15 @@ public class EnemyHealth : MonoBehaviour
         }//else
     }//flicker
 
-
-
 	//Update is called once per frame
 	void Update () 
     {
+		if(r == null)
+			r = new RandomSeed(R_Map.self.seed);
+
         if(isDead)
-        {
             flicker(true);
-        }//if
         else
-        {
             flicker(takingDamage, 6);
-        }//else
-	
     }//Update
 }//EnemyHealth

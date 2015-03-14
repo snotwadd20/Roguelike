@@ -36,10 +36,10 @@ public class MonsterMaker
 				monsterPrefab.transform.position = new Vector3(0,i-10, -2);
 
 				em = monsterPrefab.AddComponent<EnemyMove>();
-				em.damage = r.getIntInRange(3,10) * 2;
+				em.damage = Mathf.Max(1, r.getIntInRange(R_Map.self.mapLevel+1, (R_Map.self.mapLevel+1)*3)*10);
 
 				eh = monsterPrefab.AddComponent<EnemyHealth>();
-				eh.startingHealth = r.getIntInRange(1,10);
+				eh.startingHealth = (R_Map.self.mapLevel * 1.35f) * r.getIntInRange(1,5);
 
 				monsters.Add(monsterPrefab);
 			}//for
