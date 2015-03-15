@@ -24,13 +24,14 @@ public class EquipUI : MonoBehaviour
 		if(mainCanvas == null)
 			mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
 
-		Time.timeScale = 0;
+		RoguelikeControls.Pause(false);
 		transform.SetParent(mainCanvas, true);
 	}//OnEnable
 
 	void OnDisable () 
-	{
-		Time.timeScale = 1;
+	{	
+		RoguelikeControls.UnPause();
+		//Time.timeScale = 1;
 	}//OnEnable
 	// Update is called once per frame
 	void Update () 
@@ -76,7 +77,7 @@ public class EquipUI : MonoBehaviour
 			}//else
 		}//if
 
-		if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.C))
+		if(Input.GetKeyDown(KeyCode.Escape))
 			Close();
 
 	}//Update

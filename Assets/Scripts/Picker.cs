@@ -17,19 +17,30 @@ public class Picker : MonoBehaviour
 
 	void OnTriggerStay2D(Collider2D coll)
 	{
-		if(pickup)
+		if(pickup && !RoguelikeControls.isPaused)
 		{
 			Pickable obj = coll.gameObject.GetComponent<Pickable>();
 			if(obj != null && inventory != null)
 			{
 				obj.pick(ref inventory);
 			}//if
+			pickup = false;
 		}//if
+		else if(RoguelikeControls.isPaused)
+		{
+			pickup = false;
+		}//else if
 	}//if
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		if(pickup)
+		{
+			ActLog.print("There is nothing on the ground for you to [G]et.");
+			pickup = false;
+		}//if
+
 		pickup = Input.GetKeyUp(KeyCode.G);
 	}//Update
 }//Picker

@@ -90,7 +90,7 @@ public class EnemyMove : MonoBehaviour
 		{
 			if(wasOffScreen && Vector2.Distance(transform.position, R_Player.self.transform.position ) <= FOVSquare.seeDist - 2.5f)
 			{
-				ActLog.print("<color=red>A monster appears!</color>");
+				ActLog.print("<color=red>A " + gameObject.name + " begins to chase you!</color>");
 
 				wasOffScreen = false;
 				if(state == WANDER)

@@ -86,7 +86,6 @@
      <Compile Include="Assets\Scripts\UI\Equip Screen\GemFilteredContainer.cs" />
      <Compile Include="Assets\Scripts\UI\Equip Screen\InventoryGemButton.cs" />
      <Compile Include="Assets\Scripts\UI\Equip Screen\StatTotalDisplay.cs" />
-     <Compile Include="Assets\Scripts\UI\FadeScrollTextUI.cs" />
      <Compile Include="Assets\Scripts\UI\ItemButtonUI.cs" />
      <Compile Include="Assets\Scripts\UI\LevelUpUI.cs" />
      <Compile Include="Assets\Scripts\UI\LogUI.cs" />

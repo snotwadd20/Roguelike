@@ -98,7 +98,7 @@ public class MonsterMaker
 		Initialize();
 
 		GameObject monster = (GameObject)GameObject.Instantiate(monsters[r.getIntInRange(0,monsters.Count-1)]);
-		monster.name = "Monster!";
+		monster.name = "Monster";
 		monster.transform.position = position + Vector3.forward * -1;
 		monster.layer = LayerMask.NameToLayer("Enemies");
 		monster.AddComponent<BoxCollider2D>();

@@ -53,13 +53,13 @@ public class Container : MonoBehaviour
 	{
 		if(isInteractable)
 		{
-			ActLog.print("<color=lime>Press G to loot the " + name + "</color>");
+			ActLog.print("Press <color=lime>[L]</color> to loot the " + name );
 		}//if
 	}//OnTriggerEnter2D
 	
 	void OnTriggerStay2D(Collider2D coll)
 	{
-		if(isInteractable && keyPressed)
+		if(isInteractable && keyPressed && !RoguelikeControls.isPaused)
 		{
 			Container inventory = R_Player.self.GetComponent<Container>();
 			inventory.AddContainer(this);
@@ -72,7 +72,7 @@ public class Container : MonoBehaviour
 	void Update () 
 	{
 		if(isInteractable)
-			keyPressed = Input.GetKeyDown(KeyCode.G);
+			keyPressed = Input.GetKeyDown(KeyCode.L);
 	}//Update
 
 	public void showUI()
@@ -91,8 +91,10 @@ public class Container : MonoBehaviour
 
 	public void Add(Pickable item)
 	{
-		if(!contents.ContainsKey(item.type))
+		if(!contents.ContainsKey(item.type) || contents[item.type] == null)
+		{
 			contents.Add(item.type, item);
+		}//if
 		else
 		{
 			contents[item.type].count+= item.count;
@@ -111,10 +113,6 @@ public class Container : MonoBehaviour
 
 	public void Remove(string type)
 	{
-/*		//If there are none, removes it from the dictionary
-		if(contents[type] == null)
-			contents.Remove(type);
-*/
 		//If there are more left, removes one
 		contents[type].count--;
 

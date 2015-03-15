@@ -51,7 +51,7 @@ public class R_Stairs : MonoBehaviour
 		if((R_Map.Level == 0 && !stairsGoDown) || (R_Map.Level == R_Map.MAX_LEVELS-1 && stairsGoDown))
 			gameObject.SetActive(false);
 		else
-			stairsKeyPressed = Input.GetKeyDown(KeyCode.S);
+			stairsKeyPressed = (Input.GetKeyDown(KeyCode.S) && !RoguelikeControls.isPaused);
 	}//Update
 
 	public static void CleanUp()

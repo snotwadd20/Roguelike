@@ -20,11 +20,15 @@ public class ContainerUI : MonoBehaviour
 			mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
 
 		headerText.text = container.name;
-
+		List<string> removeNulls = new List<string>();
 		foreach(KeyValuePair<string, Pickable> item in container.contents)
 		{
 			Pickable pick = item.Value;
-
+			if(pick == null)
+			{
+				removeNulls.Add(item.Key);
+				continue;
+			}//if
 			// do something with entry.Value or entry.Key
 			ItemButtonUI itemButton = ((GameObject)Instantiate(buttonPrefab.gameObject)).GetComponent<ItemButtonUI>();
 
@@ -41,6 +45,7 @@ public class ContainerUI : MonoBehaviour
 
 			itemButton.gameObject.SetActive(true);
 			itemButton.transform.SetParent(contentPanel);
+			itemButton.transform.SetAsLastSibling();
 
 			itemButton.transform.localScale = Vector3.one;
 
@@ -48,19 +53,25 @@ public class ContainerUI : MonoBehaviour
 			itemButton.button.onClick.AddListener(() => {use(pick);} );
 
 		}//foreach
+		foreach(string type in removeNulls)
+		{
+			container.Remove(type);
+			print (type);
+		}//type
+
 		Canvas.ForceUpdateCanvases();
 		scrollRect.verticalNormalizedPosition = 0;
 		Canvas.ForceUpdateCanvases();
 		//Canvas.ForceUpdateCanvases();
 
-		Time.timeScale = 0;
-
+		//Time.timeScale = 0;
+		RoguelikeControls.Pause(false);
 		transform.SetParent(mainCanvas, true);
 	}//OnEnable
 
 	void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.I))
+		if(Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.I))
 			Close();
 	}//Update
 
@@ -75,8 +86,9 @@ public class ContainerUI : MonoBehaviour
 
 	public void Close()
 	{
-		Time.timeScale = 1;
+		//Time.timeScale = 1;
 		Destroy(gameObject);
+		RoguelikeControls.UnPause();
 		//gameObject.SetActive(false);
 	}//Close
 	

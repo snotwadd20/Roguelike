@@ -9,8 +9,10 @@ public class InventoryGemButton : MonoBehaviour
 	public Text valueCounter = null;
 	public Image gemImage = null;
 	public Image buttonArt = null;
-
+	public Text countText = null;
 	private Color origColor;
+
+	public int count = 1;
 
 	// Update is called once per frame
 	void Update () 
@@ -23,6 +25,8 @@ public class InventoryGemButton : MonoBehaviour
 		}//if
 
 		valueCounter.text = "" + gem.value;
+		countText.text = "" + count;
+
 		gemImage.sprite = gem.getSprite();
 		gemImage.color = gem.getColor();
 	}//Update

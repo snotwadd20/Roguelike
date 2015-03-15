@@ -23,10 +23,21 @@ public class RoguelikeControls : MonoBehaviour
 		{
 			case "i":
 				Container inventory = gameObject.GetComponent<Container>();
-				inventory.showUI();
+				if(inventory.currentGUI != null && inventory.currentGUI.isActiveAndEnabled)
+				{
+					inventory.hideUI();
+				}
+				else
+				{
+					inventory.showUI();
+				}//else
 				break;
 			case "c":
-				equipMenu.gameObject.SetActive(true);
+				if(equipMenu.gameObject.activeSelf)	
+					equipMenu.Close();
+				else
+					equipMenu.gameObject.SetActive(true);
+
 				break;
 		}//switch
 	}//executeControl
@@ -34,35 +45,14 @@ public class RoguelikeControls : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		/*if(Input.GetKeyUp(KeyCode.Tab) || (isPaused && Input.GetKeyUp(KeyCode.Escape)))
-		{
-			isPaused = !isPaused;
-			
-			if(isPaused)
-			{
-				Pause();
-				
-			}//if
-			else
-			{
-				UnPause();
-			}//else
-			
-			pauseMap.gameObject.SetActive(isPaused);
-		}//if*/
-
-
-		if(isPaused)
-			return;
-
-		if(Input.GetKeyUp(KeyCode.Escape))
+		if(!isPaused && Input.GetKeyDown(KeyCode.Escape))
 		{
 			SceneLoader.self.Load("QuitGame");
 		}//if
 
 		foreach(char letter in alphabet)
 		{
-			if(Input.GetKeyDown(letter+""))
+			if(Input.GetKeyUp(letter+""))
 			{
 				executeControl(letter + "");
 			}//if
@@ -70,17 +60,26 @@ public class RoguelikeControls : MonoBehaviour
 
 
 	}//Update
-
+	public static int NumPauses = 0;
 	public static void Pause(bool setTimeScale = true)
 	{
 		storedTimeScale = Time.timeScale;
 
 		if(setTimeScale)
 			Time.timeScale = 0.0f;
+
+		isPaused = true;
+		NumPauses++;
 	}//doPause
 	
 	public static void UnPause()
 	{
-		Time.timeScale = storedTimeScale;
+		NumPauses--;
+		if(NumPauses <= 0)
+		{
+			Time.timeScale = storedTimeScale;
+			isPaused = false;
+		}//if
+
 	}//doUnPause
 }//RoguelikeControls

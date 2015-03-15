@@ -30,6 +30,7 @@ public class GemFilteredContainer : MonoBehaviour
 				GameObject button = ((GameObject)Instantiate(buttonPrefab.gameObject));
 				InventoryGemButton igb = button.GetComponent<InventoryGemButton>();
 				igb.gem = gemPick.gem;
+				igb.count = gemPick.count;
 				igb.gameObject.SetActive(true);
 				igb.transform.SetParent(contentPanel);
 				

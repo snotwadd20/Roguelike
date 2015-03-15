@@ -114,11 +114,12 @@ public class R_Player : MonoBehaviour
 
 		ignoreRaycastLayer = LayerMask.NameToLayer("Ignore Raycast");
 
-		ActLog.print("<color=lime>[I] Open Inventory.</color>");
-		ActLog.print("<color=lime>[C] Open Gem Equipper.</color>");
-		ActLog.print("<color=lime>[G] Get item from floor.</color>");
-		ActLog.print("<color=lime>[S] Use the stairs.</color>");
-		ActLog.print("<color=lime>[UDRL] or [NUMPAD] to move.</color>");
+		ActLog.print("<color=lime>[I]</color> Open Inventory.");
+		ActLog.print("<color=lime>[C]</color> Open Character Sheet.");
+		ActLog.print("<color=lime>[G]</color> Get item from floor.");
+		ActLog.print("<color=lime>[L]</color> Loot Chest.");
+		ActLog.print("<color=lime>[S]</color> Use stairs.");
+		ActLog.print("<color=lime>[ARROWS] or [NUMPAD]</color> to move.");
 		ActLog.print("<color=cyan>Bump into enemies to attack them!</color>");
 		ActLog.print("<color=cyan>Use scrolls for ranged attacks!</color>");
 		ActLog.print("<color=cyan>Potions will heal you!</color>");
@@ -170,7 +171,7 @@ public class R_Player : MonoBehaviour
 
     public void Update() 
     {
-        if(isUsingGodFinger)
+        if(RoguelikeControls.isPaused)
             return;
 
         if(map == null)
