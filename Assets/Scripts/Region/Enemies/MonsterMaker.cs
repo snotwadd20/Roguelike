@@ -13,19 +13,44 @@ public class MonsterMaker
 
 	private static RandomSeed r = null;
 
-	private static List<GameObject> monsters = null;
+	private static List<GameObject> monsterPrefabs = null;
 
+	public static void CleanUp()
+	{
+		/*for(int i=0; i < monsterPrefabs.Count; i++)
+		{
+			GameObject.Destroy(monsterPrefabs[i]);
+			monsterPrefabs[i] = null;
+		}//for
+		monsterPrefabs = null;
+
+		for(int i=0; i < sprites.Count; i++)
+		{
+			GameObject.Destroy(sprites.cards[i]);
+			sprites.cards[i] = null;
+		}//for
+		sprites = null;
+
+		colors = null;*/
+	}//CleanUp
+	private static int LastMapSeed = -1;
 	public static void Initialize()
 	{
 		if(r == null)
-			r = new RandomSeed(R_Map.self.seed);
+			r = new RandomSeed(0);
+
+		if(R_Map.mapSeed!= LastMapSeed)
+		{
+			LastMapSeed = R_Map.mapSeed;
+			r.setSeed(R_Map.mapSeed);
+		}//if
 
 		SetupSprites();
 		SetupColors();
 
-		if(monsters == null)
+		if(monsterPrefabs == null)
 		{
-			monsters = new List<GameObject>();
+			monsterPrefabs = new List<GameObject>();
 
 			EnemyMove em;
 			EnemyHealth eh;
@@ -34,7 +59,7 @@ public class MonsterMaker
 			{
 				GameObject monsterPrefab = MakeMonsterArt();
 				monsterPrefab.name += " [PREFAB]";
-				monsterPrefab.SetActive(false);
+				//monsterPrefab.SetActive(false);
 				monsterPrefab.transform.position = new Vector3(0,i-10, -2);
 
 				em = monsterPrefab.AddComponent<EnemyMove>();
@@ -43,7 +68,7 @@ public class MonsterMaker
 				eh = monsterPrefab.AddComponent<EnemyHealth>();
 				eh.startingHealth = (R_Map.self.mapLevel * 1.35f) * r.getIntInRange(1,5);
 
-				monsters.Add(monsterPrefab);
+				monsterPrefabs.Add(monsterPrefab);
 			}//for
 		}//for
 
@@ -69,7 +94,7 @@ public class MonsterMaker
 		{
 			colors = new Deck<Color>("Colors Deck", r);
 
-			Color[] colArray = new Color[7];
+			Color[] colArray = new Color[8];
 			colArray[0] = new Color(1,0,0);
 			colArray[1] = new Color(1,0.5f,0);
 			colArray[2] = new Color(1,1,0);
@@ -100,7 +125,7 @@ public class MonsterMaker
 	{
 		Initialize();
 
-		GameObject monster = (GameObject)GameObject.Instantiate(monsters[r.getIntInRange(0,monsters.Count-1)]);
+		GameObject monster = (GameObject)GameObject.Instantiate(monsterPrefabs[r.getIntInRange(0,monsterPrefabs.Count-1)]);
 		monster.name = "Monster";
 		monster.transform.position = position + Vector3.forward * -1;
 		monster.layer = LayerMask.NameToLayer("Enemies");

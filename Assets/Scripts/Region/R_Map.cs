@@ -27,6 +27,7 @@ public class R_Map : MonoBehaviour
     public const int NOT_FLOODED = -1;
 
 	public static R_Map self = null;
+	public static RandomSeed r = null;
 
     //********************************
     //PUBLIC VARIABLES
@@ -43,6 +44,7 @@ public class R_Map : MonoBehaviour
     public SerializedPoint endPos;
     public SerializedPoint startPos;
 
+
     //-------------------------------
     //PRIVATE VARIABLES
     //-------------------------------
@@ -54,7 +56,6 @@ public class R_Map : MonoBehaviour
     private int highFloodValue = -1;
 
     //Random number generator
-    private RandomSeed r = null;
 
     //********************************
     //ARRAYS AND LISTS
@@ -89,6 +90,14 @@ public class R_Map : MonoBehaviour
 			return self.lastLevelVisited;
 		}//get
 	}//Level
+
+	public static int mapSeed
+	{
+		get
+		{
+			return self.mapSeeds[self.mapLevel];
+		}//get
+	}//mapSeedr
 
     public void initializeLists()
     {
@@ -216,7 +225,7 @@ public class R_Map : MonoBehaviour
 		initializeLists();
 		
 		//Now set up a new generator using the correct mapLevel seed
-		r.setSeed(mapSeeds[mapLevel]);
+		r.setSeed(mapSeed);
 		
 		generateMaze();
 		removeDeadEnds();
@@ -262,7 +271,12 @@ public class R_Map : MonoBehaviour
 		{
 			Destroy(allCreatedObjects[i]);
 		}//for
+
 		allCreatedObjects = null;
+
+		R_Stairs.CleanUp();
+		MonsterMaker.CleanUp();
+
 		GC.Collect();
 	}//CleanUp
 
