@@ -53,7 +53,7 @@ public class Container : MonoBehaviour
 	{
 		if(isInteractable)
 		{
-			ActLog.print("<color=green>Press G to loot the " + name + "</color>");
+			ActLog.print("<color=lime>Press G to loot the " + name + "</color>");
 		}//if
 	}//OnTriggerEnter2D
 	

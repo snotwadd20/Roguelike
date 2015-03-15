@@ -35,9 +35,9 @@ public class FadeScrollTextUI : MonoBehaviour
 
 			if(color.a == 0)
 			{
-				Canvas.ForceUpdateCanvases();
+				/*Canvas.ForceUpdateCanvases();
 				LogUI.RePool(textObject);
-				Canvas.ForceUpdateCanvases();
+				Canvas.ForceUpdateCanvases();*/
 			}//if
 		}//else
 	}//Update
