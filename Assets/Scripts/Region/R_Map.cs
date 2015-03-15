@@ -167,10 +167,7 @@ public class R_Map : MonoBehaviour
 
 	void Update()
 	{
-		if(Input.GetKeyUp(KeyCode.Escape))
-		{
-			SceneLoader.self.Load("QuitGame");
-		}//if
+
 	}//Update
 
 	//********************************
@@ -899,6 +896,8 @@ public class R_Map : MonoBehaviour
 
 					if(isCollidable)
 						spt.AddComponent<BoxCollider2D>();
+
+					spt.layer = LayerMask.NameToLayer("Environment");
 
 					allCreatedObjects.Add(spt);
                 }//if

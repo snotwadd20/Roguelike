@@ -23,6 +23,8 @@ public class FOVSquare : MonoBehaviour
 			_renderer = GetComponent<Renderer>();
 
 		cachedPlayerSpot = Vector3.one * -1;
+
+		gameObject.layer = LayerMask.NameToLayer("FOV");
 	}//Start
 	
 	// Figure out FOV stuff after the frame is over

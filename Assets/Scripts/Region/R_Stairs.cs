@@ -26,6 +26,8 @@ public class R_Stairs : MonoBehaviour
 
 		if((R_Map.Level == 0 && !stairsGoDown) || (R_Map.Level == R_Map.MAX_LEVELS-1 && stairsGoDown))
 			gameObject.SetActive(false);
+
+		gameObject.layer = LayerMask.NameToLayer("Stairs");
 	}//OnEnable
 	void OnTriggerEnter2D(Collider2D coll)
 	{

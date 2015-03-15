@@ -89,6 +89,7 @@
      <Compile Include="Assets\Scripts\UI\FadeScrollTextUI.cs" />
      <Compile Include="Assets\Scripts\UI\ItemButtonUI.cs" />
      <Compile Include="Assets\Scripts\UI\LogUI.cs" />
+     <Compile Include="Assets\Scripts\UI\PauseMap.cs" />
      <Compile Include="Assets\Scripts\UI\PopupText.cs" />
      <Compile Include="Assets\Scripts\UI\UIWindowBase.cs" />
      <Compile Include="Assets\Scripts\UI\UpdateLivesUI.cs" />
