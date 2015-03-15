@@ -7,15 +7,29 @@ public class Spells
 	public static GameObject fireballPrefab = null;
 	public static GameObject explosionPrefab = null;
 
+	private static CharacterSheet stats = null;
+
+	private static RandomSeed _randSeed = null;
+	private static RandomSeed r
+	{
+		get
+		{
+			if(_randSeed == null)
+				_randSeed = new RandomSeed(R_Map.self.seed);
+
+			return _randSeed;
+		}//get
+	}//RandomSeed
+
 	public static void MagicMissile(Collider2D[] colls, Vector3 mousePos, Transform caster)
 	{
-		float damage = 10;
+		float damage = decideDamage() * 2;
 		if(magicMisslePrefab == null)
 		{
 			magicMisslePrefab = Resources.Load<GameObject>("Effects/magicMissile");
 		}//if
 
-		Missile missile = Missile.Create(caster.transform, mousePos, 20.0f, null);
+		Missile missile = Missile.Create(caster.transform, mousePos, 10, null);
 		missile.onExplode = (RaycastHit2D[] hits) => 
 		{
 			ActLog.print(caster.name + "'s magic missile explodes!");
@@ -28,9 +42,41 @@ public class Spells
 		missileArt.transform.parent = missile.transform;
 	}//magicMissile
 
+	public static float decideDamage()
+	{
+		if(stats == null)
+			stats = R_Player.self.GetComponent<CharacterSheet>();
+
+
+		float mult = rollToAttack();
+		float extraDamage = (mult * stats.Attack);
+		float damage = XPManager.CurrentPlayerLevel + extraDamage;
+		return damage;
+	}//decideDamage
+
+
+	
+	public static float rollToAttack()
+	{
+
+		//Return damage multiplier
+		float plusCritPerLuck = 2.0f;
+		float baseCrit = 10.0f + plusCritPerLuck * stats.Luck;
+		float baseHit = (100 - baseCrit) * (1.0f/3.0f);
+
+		float roll = r.getIntInRange(1,100);
+		if(roll <= baseCrit)
+			return 4;
+		else if(roll <= baseHit)
+			return 2;
+
+		return 1;
+	}//rollToAttack
+
+
 	public static void Fireball(Collider2D[] colls, Vector3 mousePos, Transform caster)
 	{
-		float damage = 20;
+		float damage = decideDamage() * 5;
 		float radius = 3.0f;
 		if(fireballPrefab == null)
 		{

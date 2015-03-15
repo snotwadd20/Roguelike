@@ -4,7 +4,7 @@ using System.Collections;
 public class XPManager : MonoBehaviour
 {
 	public static int CurrentPlayerLevel = 1;
-	private static float baseXPToLevel = 1.0f;
+	private static float baseXPToLevel = 5.0f;
 
 	private static XPManager _self = null;
 	public static XPManager self
@@ -22,7 +22,7 @@ public class XPManager : MonoBehaviour
 	{
 		get
 		{
-			return Mathf.CeilToInt(baseXPToLevel * (1.2f*CurrentPlayerLevel));
+			return Mathf.CeilToInt(baseXPToLevel * (Mathf.Max(1.2f*(CurrentPlayerLevel-1), 1)));
 		}//get
 	}//
 	public static float CurrentXP
@@ -53,7 +53,7 @@ public class XPManager : MonoBehaviour
 
 	public static void checkForLevelUp()
 	{
-		if(self._currentXP >= (baseXPToLevel * (1.2f*CurrentPlayerLevel)))
+		if(CurrentXP >= XPToNextLevel)
 		{
 			CurrentPlayerLevel++;
 
@@ -62,14 +62,14 @@ public class XPManager : MonoBehaviour
 			//LevelUpUI.self.header;
 			LevelUpUI.self.youGot.text = "Level: " + XPManager.CurrentPlayerLevel + 
 				"\n+" + extraHealth + " HP" + 
-				"\nXP to Level " + XPManager.CurrentPlayerLevel+1 + " " + XPManager.XPToNextLevel;
+				"\nXP to Level " + (XPManager.CurrentPlayerLevel+1) + ": " + XPManager.XPToNextLevel;
 
 			LevelUpUI.self.gameObject.SetActive(true);
 
 
 			ActLog.print("<color=yellow>You levelled up!</color>");
 			ActLog.print("<color=yellow>You're now level " + CurrentPlayerLevel + "!</color>");
-			ActLog.print("<color=lightblue>XP to next level: " + Mathf.CeilToInt(baseXPToLevel * (1.2f*CurrentPlayerLevel)) + "</color>");
+			ActLog.print("<color=lightblue>XP to next level: " + XPToNextLevel + "</color>");
 			self._currentXP = 0;
 
 			PlayerHealth ph = R_Player.self.gameObject.GetComponent<PlayerHealth>();

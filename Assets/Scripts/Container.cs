@@ -16,6 +16,8 @@ public class Container : MonoBehaviour
 	private bool keyPressed = false;
 
 	private static RandomSeed r = null;
+
+	private CharacterSheet stats = null;
 	// Use this for initialization
 	void Start () 
 	{
@@ -24,6 +26,9 @@ public class Container : MonoBehaviour
 
 		if(contents == null)
 			contents = new Dictionary<string,Pickable>();
+
+		if(stats == null)
+			stats = R_Player.self.GetComponent<CharacterSheet>();
 
 		if(isInteractable)
 		{
@@ -42,9 +47,16 @@ public class Container : MonoBehaviour
 		if(!isRandomlyFilled)
 			return;
 
-		for(int i=0; i < r.getIntInRange(2, 5); i++)
+		bool hasSpawnedGem = !isInteractable;
+		int baseTreasure = 2;
+		int maxTreasure = baseTreasure + Mathf.Max(1, Mathf.RoundToInt(stats.Luck/5));
+		for(int i=0; i < r.getIntInRange(baseTreasure, maxTreasure); i++)
 		{
-			Pickable loot = TreasureManager.SpawnLoot(Vector3.zero, this, isInteractable);
+			Pickable loot = TreasureManager.SpawnLoot(Vector3.zero, this, !hasSpawnedGem);
+
+			if(isInteractable && loot.GetComponent<GemPickable>())
+				hasSpawnedGem = true;
+
 			Add(loot);
 		}//for
 	}//fillRandomly
@@ -91,10 +103,15 @@ public class Container : MonoBehaviour
 
 	public void Add(Pickable item)
 	{
-		if(!contents.ContainsKey(item.type) || contents[item.type] == null)
+		if(!contents.ContainsKey(item.type))
 		{
 			contents.Add(item.type, item);
 		}//if
+		else if(contents[item.type] == null)
+		{
+			Remove(item.type);
+			contents.Add(item.type, item);
+		}//else if
 		else
 		{
 			contents[item.type].count+= item.count;
@@ -113,13 +130,16 @@ public class Container : MonoBehaviour
 
 	public void Remove(string type)
 	{
-		//If there are more left, removes one
-		contents[type].count--;
-
-		if(contents[type].count <= 0)
+		if(contents.ContainsKey(type))
 		{
-			Destroy(contents[type]);
-			contents.Remove(type);
+			//If there are more left, removes one
+			contents[type].count--;
+
+			if(contents[type].count <= 0)
+			{
+				Destroy(contents[type]);
+				contents.Remove(type);
+			}//if
 		}//if
 	}//Remove
 }//Container

@@ -20,9 +20,15 @@ public class GemFilteredContainer : MonoBehaviour
 		{
 			allContentObjects = new List<GameObject>();
 		}//if
+		List<string> nullKeys = new List<string>();
 		foreach(KeyValuePair<string, Pickable> item in inventory.contents)
 		{
 			Pickable pick = item.Value;
+			if(pick == null)
+			{
+				nullKeys.Add(item.Key);
+			}//if
+
 			gemPick = pick.GetComponent<GemPickable>();
 
 			if(gemPick != null)
@@ -30,13 +36,18 @@ public class GemFilteredContainer : MonoBehaviour
 				GameObject button = ((GameObject)Instantiate(buttonPrefab.gameObject));
 				InventoryGemButton igb = button.GetComponent<InventoryGemButton>();
 				igb.gem = gemPick.gem;
-				igb.count = gemPick.count;
+				igb.count = pick.count;
 				igb.gameObject.SetActive(true);
 				igb.transform.SetParent(contentPanel);
 				
 				igb.transform.localScale = Vector3.one;
 				allContentObjects.Add(igb.gameObject);
 			}//if
+		}//foreach
+
+		foreach(string nullKey in nullKeys)
+		{
+			inventory.Remove(nullKey);
 		}//foreach
 
 		Canvas.ForceUpdateCanvases();

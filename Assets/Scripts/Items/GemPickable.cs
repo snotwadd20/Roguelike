@@ -8,7 +8,7 @@ public class GemPickable : MonoBehaviour
 	public new string name = "Gem";
 	public int value = 1;
 	public Gem.Kind type = Gem.Kind.None;
-	public int count  = 1;
+	//public int count  = 1;
 
 	public Pickable pickableScript = null;
 

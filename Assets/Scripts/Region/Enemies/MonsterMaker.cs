@@ -17,7 +17,9 @@ public class MonsterMaker
 
 	public static void Initialize()
 	{
-		r = new RandomSeed(R_Map.self.seed);
+		if(r == null)
+			r = new RandomSeed(R_Map.self.seed);
+
 		SetupSprites();
 		SetupColors();
 
