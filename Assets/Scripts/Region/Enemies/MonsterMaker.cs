@@ -59,7 +59,7 @@ public class MonsterMaker
 			{
 				GameObject monsterPrefab = MakeMonsterArt();
 				monsterPrefab.name += " [PREFAB]";
-				//monsterPrefab.SetActive(false);
+				monsterPrefab.SetActive(false);
 				monsterPrefab.transform.position = new Vector3(0,i-10, -2);
 
 				em = monsterPrefab.AddComponent<EnemyMove>();

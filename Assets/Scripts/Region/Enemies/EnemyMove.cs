@@ -178,7 +178,7 @@ public class EnemyMove : MonoBehaviour
 		{
 			int dir = R_Map.self.randomDirFromAvailable(ref dirs);
 
-			if((lastMoveDir != 0 && dir == R_Map.self.oppositeDir(lastMoveDir)) || (R_Map.self.corners[(int)transform.position.x, (int)transform.position.y] & dir) == 0)
+		if((lastMoveDir != 0 && dir == R_Map.self.oppositeDir(lastMoveDir)) || (R_Map.self.corners[(int)transform.position.x, (int)transform.position.y] & dir) == 0)
 				continue;
 			
 			chosenDir = dir;
