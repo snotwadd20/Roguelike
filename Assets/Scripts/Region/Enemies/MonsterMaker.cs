@@ -77,6 +77,7 @@ public class MonsterMaker
 			colArray[4] = new Color(0,0,1);
 			colArray[5] = new Color(1,0,1);
 			colArray[6] = new Color(1,0.25f,0.5f);
+			colArray[7] = new Color(0.5f,0.7f,0.75f);
 
 			foreach(Color color in colArray)
 			{
