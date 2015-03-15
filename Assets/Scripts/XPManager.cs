@@ -45,7 +45,8 @@ public class XPManager : MonoBehaviour
 		ActLog.print("You got <color=lightblue>" + xpToAdd + " XP</color>!");
 		self._currentXP += xpToAdd;
 
-		checkForLevelUp();
+		TimerCallback.createTimer(0.5f, checkForLevelUp, "LEVEL UP SCREEN TIMER", true);
+		//checkForLevelUp();
 
 		return self._currentXP;
 	}//AddXP
@@ -55,14 +56,25 @@ public class XPManager : MonoBehaviour
 		if(self._currentXP >= (baseXPToLevel * (1.2f*CurrentPlayerLevel)))
 		{
 			CurrentPlayerLevel++;
+
+			float extraHealth = CurrentPlayerLevel * 1.2f * 10;
+
+			//LevelUpUI.self.header;
+			LevelUpUI.self.youGot.text = "Level: " + XPManager.CurrentPlayerLevel + 
+				"\n+" + extraHealth + " HP" + 
+				"\nXP to Level " + XPManager.CurrentPlayerLevel+1 + " " + XPManager.XPToNextLevel;
+
+			LevelUpUI.self.gameObject.SetActive(true);
+
+
 			ActLog.print("<color=yellow>You levelled up!</color>");
 			ActLog.print("<color=yellow>You're now level " + CurrentPlayerLevel + "!</color>");
 			ActLog.print("<color=lightblue>XP to next level: " + Mathf.CeilToInt(baseXPToLevel * (1.2f*CurrentPlayerLevel)) + "</color>");
 			self._currentXP = 0;
 
 			PlayerHealth ph = R_Player.self.gameObject.GetComponent<PlayerHealth>();
-			ph.addToMaxHealth(CurrentPlayerLevel * 1.2f * 10);
-			ActLog.print("<color=orange>You got +" + (CurrentPlayerLevel * 1.2f * 10) + " MaxHP!</color>");
+			ph.addToMaxHealth(extraHealth);
+			ActLog.print("<color=orange>You got +" + extraHealth + " MaxHP!</color>");
 		}//if
 	}//
 

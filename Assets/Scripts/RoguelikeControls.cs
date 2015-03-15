@@ -9,8 +9,14 @@ public class RoguelikeControls : MonoBehaviour
 	public PauseMap pauseMap = null;
 
 	public static bool isPaused = false;
-	private float storedTimeScale = 1.0f;
+	private static float storedTimeScale = 1.0f;
 
+	public static RoguelikeControls self = null;
+	void Awake()
+	{
+		if(self == null)
+			self = this;
+	}//Awake
 	void executeControl(string key)
 	{
 		switch(key)
@@ -28,25 +34,25 @@ public class RoguelikeControls : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Input.GetKeyUp(KeyCode.Tab) || (isPaused && Input.GetKeyUp(KeyCode.Escape)))
+		/*if(Input.GetKeyUp(KeyCode.Tab) || (isPaused && Input.GetKeyUp(KeyCode.Escape)))
 		{
 			isPaused = !isPaused;
 			
 			if(isPaused)
 			{
-				doPause();
+				Pause();
 				
 			}//if
 			else
 			{
-				doUnPause();
+				UnPause();
 			}//else
 			
 			pauseMap.gameObject.SetActive(isPaused);
-		}//if
+		}//if*/
 
 
-		if(Time.timeScale == 0)
+		if(isPaused)
 			return;
 
 		if(Input.GetKeyUp(KeyCode.Escape))
@@ -65,13 +71,15 @@ public class RoguelikeControls : MonoBehaviour
 
 	}//Update
 
-	private void doPause()
+	public static void Pause(bool setTimeScale = true)
 	{
 		storedTimeScale = Time.timeScale;
-		Time.timeScale = 0.0f;
+
+		if(setTimeScale)
+			Time.timeScale = 0.0f;
 	}//doPause
 	
-	private void doUnPause()
+	public static void UnPause()
 	{
 		Time.timeScale = storedTimeScale;
 	}//doUnPause
