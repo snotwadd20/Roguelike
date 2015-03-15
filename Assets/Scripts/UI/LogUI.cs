@@ -11,7 +11,7 @@ public class LogUI : MonoBehaviour
 	public static LogUI self = null;
 	// Use this for initialization
 
-	void Start () 
+	void OnEnable () 
 	{
 		if(self == null)
 			self = this;
