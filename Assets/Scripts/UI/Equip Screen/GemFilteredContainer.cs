@@ -13,6 +13,8 @@ public class GemFilteredContainer : MonoBehaviour
 	public Transform contentPanel = null;
 	public ScrollRect scrollRect = null;
 
+	private InventoryGemButton igb = null;
+
 	private List<GameObject> allContentObjects = null;
 	void OnEnable () 
 	{
@@ -34,7 +36,7 @@ public class GemFilteredContainer : MonoBehaviour
 			if(gemPick != null)
 			{
 				GameObject button = ((GameObject)Instantiate(buttonPrefab.gameObject));
-				InventoryGemButton igb = button.GetComponent<InventoryGemButton>();
+				igb = button.GetComponent<InventoryGemButton>();
 				igb.gem = gemPick.gem;
 				igb.count = pick.count;
 				igb.gameObject.SetActive(true);
@@ -55,6 +57,11 @@ public class GemFilteredContainer : MonoBehaviour
 		Canvas.ForceUpdateCanvases();
 	}//OnEnable
 
+	void Update()
+	{
+		if(gemPick)
+			igb.count = gemPick.pickableScript.count;
+	}//Update
 	void OnDisable()
 	{
 		CleanUp();

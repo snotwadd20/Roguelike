@@ -33,7 +33,7 @@ public class GemPickable : MonoBehaviour
 		if(pickableScript == null)
 			pickableScript = gameObject.AddComponent<Pickable>();
 		
-		pickableScript.name = (type == Gem.Kind.None ? "" : type + " ") + "Gem";
+		pickableScript.name = (type == Gem.Kind.None ? "" : type + " ") + "Gem " + gem.value;
 		pickableScript.type = type + "Gem" + value;
 
 		colorGem();
