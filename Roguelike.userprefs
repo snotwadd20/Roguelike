@@ -1,21 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\Equip Screen\GemFilteredContainer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\LogUI.cs">
     <Files>
-      <File FileName="Assets\Scripts\Region\Enemies\EnemyMove.cs" Line="181" Column="1" />
+      <File FileName="Assets\Scripts\UI\LogUI.cs" Line="20" Column="2" />
+      <File FileName="Assets\Scripts\Region\Enemies\EnemyMove.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Container.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Region\Enemies\EnemyHealth.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Region\Enemies\MonsterMaker.cs" Line="49" Column="17" />
+      <File FileName="Assets\Scripts\Region\Enemies\MonsterMaker.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Region\R_Map.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\ContainerUI.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Spells\Spells.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Region\R_Stairs.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Spells\AOEBurst.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Utility\Texturizer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\Equip Screen\EquipUI.cs" Line="153" Column="30" />
-      <File FileName="Assets\Scripts\UI\Equip Screen\InventoryGemButton.cs" Line="36" Column="31" />
-      <File FileName="Assets\Scripts\UI\Equip Screen\GemFilteredContainer.cs" Line="63" Column="4" />
-      <File FileName="Assets\Scripts\Items\GemPickable.cs" Line="36" Column="87" />
+      <File FileName="Assets\Scripts\UI\Equip Screen\EquipUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\Equip Screen\InventoryGemButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\Equip Screen\GemFilteredContainer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Items\GemPickable.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Region\R_Player.cs" Line="125" Column="62" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
